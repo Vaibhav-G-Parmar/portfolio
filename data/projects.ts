@@ -29,7 +29,9 @@ export const projects: readonly Project[] = [
     description:
       "Full-stack travel journal with forums and social discovery—Next.js, React, Tailwind, Node/Express, MongoDB with indexing that cut query time ~40%, Leaflet maps with Places autocomplete, Dropbox-backed media, Passport/Bcrypt/JWT auth, and auto-scaling deployment on Cyclic.",
     tags: ["Next.js", "React", "MongoDB", "Express", "Leaflet", "JWT"],
-    links: {},
+    links: {
+      live: "https://chronicle-web-app-eight.vercel.app",
+    },
     accent: "ocean",
   },
   {
