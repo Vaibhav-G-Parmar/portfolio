@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Terminal-inspired palette — dark-first (see AI Daily Brief–style UI) */
+:root {
+  color-scheme: light;
+  --background: #f4f4f5;
+  --foreground: #18181b;
+  --terminal-accent: #059669;
+  --terminal-dim: #71717a;
+  --grid-line: rgba(5, 120, 87, 0.09);
+}
+
+.dark {
+  color-scheme: dark;
+  --background: #050505;
+  --foreground: #e4e4e7;
+  --terminal-accent: #34d399;
+  --terminal-dim: #a1a1aa;
+  --grid-line: rgba(52, 211, 153, 0.085);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans-plex);
+  --font-mono: var(--font-mono-jb);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans-plex), system-ui, sans-serif;
+  letter-spacing: 0.015em;
+  line-height: 1.65;
+}
+
+.dark body {
+  letter-spacing: 0.018em;
+  line-height: 1.7;
+}
+
+/* Headlines & labels: monospace terminal chrome */
+.font-display {
+  font-family: var(--font-mono-jb), ui-monospace, monospace;
+  letter-spacing: -0.03em;
+}
+
+.dark .font-display {
+  letter-spacing: -0.02em;
+}
+
+:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--terminal-accent), transparent 25%);
+  outline-offset: 3px;
+}
+
+/* Lightweight hero stagger — replaces JS animation lib */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-fade-in {
+  opacity: 0;
+  animation: fade-up 0.55s ease-out forwards;
+}
+
+.hero-fade-in-delay-1 {
+  animation-delay: 0.08s;
+}
+.hero-fade-in-delay-2 {
+  animation-delay: 0.16s;
+}
+.hero-fade-in-delay-3 {
+  animation-delay: 0.28s;
+}
+
+.hero-card:nth-child(1) {
+  animation-delay: 0.42s;
+}
+.hero-card:nth-child(2) {
+  animation-delay: 0.5s;
+}
+.hero-card:nth-child(3) {
+  animation-delay: 0.58s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-fade-in,
+  .hero-card {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
