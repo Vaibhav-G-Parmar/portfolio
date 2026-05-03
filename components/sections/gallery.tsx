@@ -49,7 +49,7 @@ export function Gallery() {
         ) : (
           <div className="mt-10">
             <p className="font-mono mb-4 text-[11px] uppercase tracking-[0.14em] text-zinc-500 dark:text-zinc-500">
-              Preview grid — add images to unlock
+              Preview grid. Add images to unlock the gallery.
             </p>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
               {Array.from({ length: 6 }, (_, i) => (

@@ -2,7 +2,7 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Terminal-inspired palette — dark-first (see AI Daily Brief–style UI) */
+/* Terminal-inspired palette, dark-first */
 :root {
   color-scheme: light;
   --background: #f4f4f5;
@@ -66,7 +66,7 @@ body {
   outline-offset: 3px;
 }
 
-/* Lightweight hero stagger — replaces JS animation lib */
+/* Lightweight hero stagger (CSS keyframes only) */
 @keyframes fade-up {
   from {
     opacity: 0;

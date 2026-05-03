@@ -21,12 +21,12 @@ const siteUrl = getSiteUrl();
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${siteProfile.name} — ${siteProfile.title}`,
-    template: `%s — ${siteProfile.name}`,
+    default: `${siteProfile.name} · ${siteProfile.title}`,
+    template: `%s · ${siteProfile.name}`,
   },
   description: seoDescription,
   openGraph: {
-    title: `${siteProfile.name} — ${siteProfile.title}`,
+    title: `${siteProfile.name} · ${siteProfile.title}`,
     description: seoDescription,
     url: siteUrl,
     siteName: siteProfile.name,
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteProfile.name} — ${siteProfile.title}`,
+    title: `${siteProfile.name} · ${siteProfile.title}`,
     description: seoDescription,
   },
   robots: { index: true, follow: true },

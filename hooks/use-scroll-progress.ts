@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-/** 0–1 document scroll progress for progress bars. */
+/** Document scroll ratio from 0 to 1, for progress bars. */
 export function useScrollProgress() {
   const [progress, setProgress] = useState(0);
 

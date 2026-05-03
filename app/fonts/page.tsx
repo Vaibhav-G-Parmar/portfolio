@@ -35,7 +35,7 @@ const sampleGeistF = Geist({ subsets: ["latin"] });
 const sampleSourceSerif = Source_Serif_4({ subsets: ["latin"], weight: ["400", "600"] });
 
 const sampleBody =
-  "Software Engineer building secure web and mobile apps—React, Node, Java, Python, and cloud APIs—in Agile teams.";
+  "Software Engineer building secure web and mobile apps in React, Node, Java, Python, and cloud APIs, mostly with Agile teams.";
 
 const pairings = [
   {
@@ -89,7 +89,7 @@ export default function FontsSamplePage() {
         Typography lab
       </p>
       <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">
-        Pick a pairing (A–F)
+        Pick a pairing (A-F)
       </h1>
       <p className="mt-3 max-w-2xl text-sm leading-relaxed text-foreground/70">
         Live samples using{" "}

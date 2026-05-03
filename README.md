@@ -1,3 +1,3 @@
 # Portfolio
 
-Personal portfolio site — Next.js and Tailwind CSS.
+Personal portfolio. Next.js and Tailwind CSS.

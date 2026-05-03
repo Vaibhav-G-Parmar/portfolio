@@ -1,5 +1,5 @@
 /**
- * Photo gallery — add files under `public/gallery/` and entries here.
+ * Photo gallery: add files under `public/gallery/` and list them here.
  * Only the first two entries are shown (see `GALLERY_MAX` in `gallery.tsx`).
  * Filenames with spaces: use `%20` in `src`, e.g. `/gallery/my%20photo.jpg`.
  */
@@ -7,7 +7,7 @@ export const galleryCopy = {
   eyebrow: "Gallery",
   title: "Photos & moments.",
   description:
-    "A few snapshots—events, travel, and behind the scenes. Swap in your own images anytime.",
+    "A few snapshots from events, travel, and behind the scenes. Swap in your own images anytime.",
 } as const;
 
 export type GalleryImage = {

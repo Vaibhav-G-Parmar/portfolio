@@ -1,11 +1,11 @@
-/** SEO / Open Graph (~155–180 chars): growth + systems hook + role */
+/** SEO / Open Graph blurb (~155-180 chars ideal) */
 export const seoDescription =
-  "Vaibhav Parmar — Software Engineer in Toronto. I enhance business growth by optimizing team processes, reducing friction in existing systems, and delivering user-centric solutions at TD Bank and beyond.";
+  "Vaibhav Parmar, Software Engineer in Toronto. I focus on growth by improving how teams work and reducing friction in existing systems, with practical delivery at TD Bank and beyond.";
 
 export const siteProfile = {
   name: "Vaibhav Parmar",
   title: "Software Engineer",
-  /** Hero lead — primary value proposition */
+  /** Hero lead */
   tagline:
     "I enhance business growth by optimizing team processes and delivering user-centric solutions.",
   email: "vaibhav.parmar3@outlook.com",
@@ -19,9 +19,9 @@ export const siteProfile = {
 
 export const heroCopy = {
   badge: "Growth · Less friction · Stronger teams",
-  /** Hero second paragraph — friction + collaboration */
+  /** Hero second paragraph */
   supporting:
-    "I'm passionate about problem-solving, collaboration, and continuous improvement—and I thrive on impactful results. I reduce friction in your existing systems and make them work better for the people who rely on them.",
+    "I like collaborative problem solving and steady improvement when it shows up in real results. A lot of my work is easing friction in systems you already run and making things a bit easier for the people who rely on them.",
   primaryCta: "View selected work",
   secondaryCta: "Get in touch",
   resumeCta: "Download resume",
@@ -35,12 +35,12 @@ export const heroHighlights = [
 ] as const;
 
 export const aboutHeading =
-  "Better workflows, stronger outcomes—not rip-and-replace for its own sake.";
+  "Better workflows and stronger outcomes, without replacing everything just for show.";
 
 export const aboutCopy = {
   bio: [
-    "I enhance business growth by optimizing how teams work and what lands in users' hands. That means clearer ownership, sustainable pace, and solutions centered on real problems—so delivery compounds instead of stalling.",
-    "Technically, I reduce friction inside existing stacks: automation where it counts, APIs that hide legacy complexity, and interfaces teams can adopt without a rewrite fantasy. I'm a Software Engineer with four years shipping secure web and mobile apps—Java and JavaScript ecosystems, React, Node, Spring, Python, cloud, and Kafka-style delivery—in Agile environments at TD Bank and in production products.",
+    "I grow the business by sharpening how teams operate and what actually reaches users. When clearer ownership lines up with a sustainable pace and work tied to real constraints, delivery keeps compounding instead of stalling.",
+    "Technically I spend most of my time calming down existing stacks: automation where it helps, APIs that paper over legacy quirks, and interfaces teams can ship without a risky full rewrite. I've been a Software Engineer for about four years, building web and mobile in Java and JavaScript (React, Node, Spring, Python, cloud work, Kafka-flavored patterns), mostly Agile teams at TD Bank and products in production.",
     "Proof points: Seneca Computer Programming & Analysis (Co-op), Advanced Diploma with High Honors (4.0 CGPA); hackathon finalist; certifications across Kafka and full-stack engineering. If you're hiring for someone who improves the system you have while growing the business you want, let's talk.",
   ],
 } as const;
@@ -64,8 +64,8 @@ export const projectsHeading = "Shipping outcomes you can trace end to end.";
 
 export const contactHeading = "Tell me what “better” looks like for your team.";
 export const contactLead =
-  "If you need less friction in existing systems, clearer workflows, and user-centric delivery—we should connect. Email, LinkedIn, or phone works.";
+  "If that sounds like your situation, say hi. Email, LinkedIn, or phone all work.";
 
 /** Footer one-liner under social links */
 export const brandPromise =
-  "Growth through better processes—and software that fits how your teams already work.";
+  "Growth from better processes and software that fits how your teams already work.";

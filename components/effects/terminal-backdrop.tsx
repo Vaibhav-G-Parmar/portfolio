@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Static terminal-style backdrop (grid + vignette). No commands or interaction—visual only.
+ * Static terminal-style backdrop (grid + vignette). Visual only; no interaction.
  */
 export function TerminalBackdrop() {
   return (
