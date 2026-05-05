@@ -7,7 +7,7 @@ export const galleryCopy = {
   eyebrow: "Gallery",
   title: "Photos & moments.",
   description:
-    "A few snapshots from events, travel, and behind the scenes. Swap in your own images anytime.",
+    "A few snapshots from events, travel, and behind the scenes.",
 } as const;
 
 export type GalleryImage = {
