@@ -30,6 +30,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -39,6 +40,7 @@ html {
 }
 
 body {
+  overflow-x: hidden;
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans-plex), system-ui, sans-serif;
@@ -109,5 +111,33 @@ body {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+}
+
+/* Badge border pulse */
+@keyframes badge-pulse {
+  0%, 100% {
+    box-shadow: 0 0 6px -2px rgba(16, 185, 129, 0.15),
+                inset 0 0 6px -3px rgba(16, 185, 129, 0.08);
+    border-color: rgba(5, 150, 105, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 18px -2px rgba(16, 185, 129, 0.45),
+                inset 0 0 12px -4px rgba(16, 185, 129, 0.18);
+    border-color: rgba(5, 150, 105, 0.7);
+  }
+}
+
+.dark .badge-pulse-glow,
+.badge-pulse-glow {
+  /* fade-up first, then pulse starts after it lands */
+  animation: fade-up 0.55s ease-out forwards,
+             badge-pulse 3.2s ease-in-out 0.55s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .badge-pulse-glow {
+    animation: none !important;
+    opacity: 1 !important;
   }
 }
