@@ -12,8 +12,9 @@ export const galleryCopy = {
  * Leave the array empty to fall back to alphabetical order.
  */
 export const galleryOrder: string[] = [
+  "1775614146014.jpeg",              // hero intro image
+  "AI-Talk-Keynote.png",
   "2026-05-02 18.20.03.jpg",
-  "1775614146014.jpeg",
   "AI Presentation-3.jpeg",
   "Co-op Fire Side Chat July 2024 - 1.png",
   "photo_2026-05-19 00.01.34.jpeg",

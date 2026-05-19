@@ -1,13 +1,13 @@
 /** SEO / Open Graph blurb (~155-180 chars ideal) */
 export const seoDescription =
-  "Vaibhav Parmar - AI Software Engineer in Toronto. Mainframe, full-stack distributed systems, and AI-assisted delivery. 4+ years shipping enterprise web, mobile, and integration workloads.";
+  "Vaibhav Parmar - AI Software Engineer in Toronto. Mainframe, full-stack distributed systems, and AI agentic workflows. 4+ years shipping enterprise web, mobile, and integration workloads.";
 
 export const siteProfile = {
   name: "Vaibhav Parmar",
   title: "AI Software Engineer",
   /** Hero lead */
   tagline:
-    "Mainframe to modern. APIs, distributed systems, and AI-assisted delivery.",
+    "Mainframe to modern. APIs, distributed systems, and AI agentic workflows.",
   email: "vaibhav.parmar3@outlook.com",
   /** E.164-style for tel: links */
   phone: "+16476763539",
@@ -18,7 +18,7 @@ export const siteProfile = {
 } as const;
 
 export const heroCopy = {
-  badge: "Mainframe · Distributed Systems · AI-Assisted Dev",
+  badge: "Mainframe · Distributed Systems · AI Agentic Workflows",
   /** Hero second paragraph */
   supporting:
     "Systems that hold up under real traffic. Mainframe backends connected to modern consumers through APIs, event-driven flows, and automation that keeps releases moving.",
@@ -31,7 +31,7 @@ export const heroCopy = {
 export const heroHighlights = [
   { k: "Mainframe", v: "z/OS - DB2 - legacy to modern" },
   { k: "Full-Stack Distributed", v: "APIs - Kafka - cloud - web & mobile" },
-  { k: "AI", v: "Copilot - agents - prompt workflows" },
+  { k: "AI Agentic Workflows", v: "Copilot - Cursor IDE - prompt eng." },
 ] as const;
 
 export const aboutHeading =
@@ -40,7 +40,7 @@ export const aboutHeading =
 export const aboutCopy = {
   bio: [
     "AI Software Engineer in Toronto. 4+ years. I connect z/OS and DB2 backends to modern consumers through REST APIs, messaging, and integrations that hold up at scale.",
-    "AI-assisted engineering - agentic workflows with GitHub Copilot (chat, agents, skills, custom instructions) and Cursor to accelerate code reviews, generation, and delivery.",
+    "AI agentic workflows - GitHub Copilot (chat, agents, skills, custom instructions) and Cursor to accelerate code reviews, generation, and delivery.",
     "Java, TypeScript, React, Node, Spring Boot, Python, Kafka, AWS, Azure, Docker, Kubernetes, CI/CD. Mainframe data paths (DB2, batch, service interfaces). Mobile (iOS, Android). Observability (Splunk, Dynatrace, Datadog). Testing (Jest, Mocha, Supertest). Seneca CPA Co-op - Advanced Diploma, High Honors (4.0 CGPA). Hackathon finalist. Kafka and full-stack certifications.",
   ],
 } as const;
@@ -48,27 +48,43 @@ export const aboutCopy = {
 export const skillGroups = [
   {
     label: "Languages",
-    items: ["Java", "TypeScript", "JavaScript", "Python", "SQL", "C++", "Swift", "Bash"],
+    items: ["Java", "TypeScript", "JavaScript", "Python", "SQL", "PL/SQL", "C++", "SwiftUI", "Bash", "YAML", "HTML", "CSS"],
   },
   {
-    label: "Frameworks & runtime",
-    items: ["React", "Next.js", "Node.js", "Express", "Spring Boot", "Angular", "Hibernate"],
+    label: "Frameworks",
+    items: ["Spring", "Spring Boot", "Hibernate", "WebFlux", "React", "Next.js", "Node.js", "Angular", "Redux", "Express"],
   },
   {
     label: "Cloud & DevOps",
-    items: ["AWS", "Azure", "Docker", "Kubernetes", "CI/CD", "GitHub Actions", "Jenkins"],
+    items: ["AWS", "Azure", "GCP", "Docker", "Kubernetes", "CI/CD", "GitHub Actions", "Azure DevOps", "Maven", "Git", "PowerShell"],
   },
   {
-    label: "Mainframe & data",
-    items: ["z/OS", "DB2", "Batch", "Kafka", "MongoDB", "Redis", "DynamoDB"],
+    label: "Mainframe",
+    items: ["COBOL", "JCL", "SAS", "TSO", "ISPF", "CA-7", "AWF", "Endevor", "z/OS Connect", "IDz", "DB2", "IMS DB"],
   },
   {
-    label: "AI & automation",
+    label: "Data & messaging",
+    items: ["MongoDB", "Redis", "DynamoDB", "Kafka", "Kafka Streams", "Kafka Connect", "KSQL", "Confluent Cloud"],
+  },
+  {
+    label: "APIs & integration",
+    items: ["REST", "JSON", "XML", "JWT", "OAuth", "SAML", "SASL", "Zowe CLI"],
+  },
+  {
+    label: "Mobile",
+    items: ["Android", "iOS", "SwiftUI", "WatchOS"],
+  },
+  {
+    label: "AI agentic workflows",
     items: ["GitHub Copilot", "Copilot Agents", "Cursor IDE", "Prompt Engineering"],
   },
   {
-    label: "Observability & QA",
-    items: ["Splunk", "Dynatrace", "Datadog", "Jest", "Mocha", "Supertest"],
+    label: "Testing",
+    items: ["Jest", "Mocha", "Supertest", "Unit", "Integration", "Regression", "Performance"],
+  },
+  {
+    label: "Observability & tools",
+    items: ["Splunk", "Dynatrace", "Datadog", "Jira", "ServiceNow", "Confluence", "Figma", "Postman"],
   },
 ] as const;
 

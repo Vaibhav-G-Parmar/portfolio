@@ -20,7 +20,7 @@ function HeroGallery({ images }: { images: GalleryImage[] }) {
         alt={img.alt}
         fill
         className="object-cover"
-            sizes="(max-width: 1024px) 0px, 380px"
+            sizes="(max-width: 1024px) 100vw, 380px"
         priority
       />
       {/* Corner scan-line decoration */}
@@ -97,6 +97,11 @@ export function Hero({ images }: { images: GalleryImage[] }) {
 
           {/* ── Right: image (desktop only) ── */}
           <div className="hidden lg:block lg:sticky lg:top-32">
+            <HeroGallery images={images} />
+          </div>
+
+          {/* ── Image: mobile only (below CTAs) ── */}
+          <div className="mt-8 lg:hidden">
             <HeroGallery images={images} />
           </div>
 
