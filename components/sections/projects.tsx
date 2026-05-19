@@ -1,7 +1,9 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { RevealSection } from "@/components/ui/reveal-section";
+import { AnimatedSection } from "@/components/ui/animated-section";
+import { StaggerContainer, StaggerItem } from "@/components/ui/stagger";
 import { projectsHeading } from "@/content/site";
 import { projects, type Project } from "@/data/projects";
 
@@ -16,7 +18,11 @@ function ProjectCard({ project }: { project: Project }) {
   const hasLinks = Boolean(live || googlePlay || appStore || repo);
 
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden border border-emerald-600/25 bg-background/65 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-600/45 dark:border-emerald-400/22 dark:bg-zinc-950/70 dark:hover:border-emerald-400/40">
+    <motion.article
+      className="group relative flex h-full flex-col overflow-hidden border border-emerald-600/25 bg-background/65 p-6 dark:border-emerald-400/22 dark:bg-zinc-950/70"
+      whileHover={{ y: -4, borderColor: "rgba(16,185,129,0.45)", transition: { duration: 0.22 } }}
+      whileTap={{ scale: 0.99 }}
+    >
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
@@ -28,65 +34,47 @@ function ProjectCard({ project }: { project: Project }) {
           <h3 className="min-w-0 flex-1 font-display text-lg font-semibold leading-snug tracking-normal text-foreground">
             {project.title}
           </h3>
-          <span
+          <motion.span
             aria-hidden
-            className="inline-flex size-10 shrink-0 items-center justify-center border border-emerald-600/30 bg-background/80 text-emerald-700 transition group-hover:border-emerald-600/55 group-hover:text-emerald-800 dark:border-emerald-400/30 dark:text-emerald-400 dark:group-hover:border-emerald-400/55"
+            className="inline-flex size-10 shrink-0 items-center justify-center border border-emerald-600/30 bg-background/80 text-emerald-700 dark:border-emerald-400/30 dark:text-emerald-400"
+            whileHover={{ rotate: 12, scale: 1.1, transition: { duration: 0.2 } }}
           >
             <ArrowUpRight className="size-5" />
-          </span>
+          </motion.span>
         </div>
         <p className="mt-3 text-[14px] leading-[1.65] text-zinc-700 dark:text-zinc-300">{project.description}</p>
         <div className="font-mono mt-5 flex flex-wrap content-start gap-2">
           {project.tags.map((t) => (
-            <span
+            <motion.span
               key={t}
               className="h-fit border border-emerald-600/25 bg-background/70 px-2 py-1 text-[11px] tracking-[0.02em] text-zinc-700 dark:border-emerald-400/22 dark:bg-zinc-900/80 dark:text-zinc-300"
+              whileHover={{ scale: 1.05, transition: { duration: 0.15 } }}
             >
               {t}
-            </span>
+            </motion.span>
           ))}
         </div>
         <div className="mt-auto pt-6">
           {hasLinks ? (
             <div className="font-mono flex flex-wrap items-center gap-3">
               {live ? (
-                <a
-                  href={live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={primaryCtaClass}
-                  aria-label={`Visit ${project.title} (opens in new tab)`}
-                >
-                  Visit site
-                  <ArrowUpRight className="size-3.5 shrink-0" />
+                <a href={live} target="_blank" rel="noopener noreferrer" className={primaryCtaClass} aria-label={`Visit ${project.title} (opens in new tab)`}>
+                  Visit site <ArrowUpRight className="size-3.5 shrink-0" />
                 </a>
               ) : null}
               {googlePlay ? (
-                <a
-                  href={googlePlay}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={primaryCtaClass}
-                >
-                  Google Play
-                  <ArrowUpRight className="size-3.5 shrink-0" />
+                <a href={googlePlay} target="_blank" rel="noopener noreferrer" className={primaryCtaClass}>
+                  Google Play <ArrowUpRight className="size-3.5 shrink-0" />
                 </a>
               ) : null}
               {appStore ? (
-                <a
-                  href={appStore}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={secondaryCtaClass}
-                >
-                  App Store
-                  <ArrowUpRight className="size-3.5 shrink-0" />
+                <a href={appStore} target="_blank" rel="noopener noreferrer" className={secondaryCtaClass}>
+                  App Store <ArrowUpRight className="size-3.5 shrink-0" />
                 </a>
               ) : null}
               {repo ? (
                 <a href={repo} target="_blank" rel="noopener noreferrer" className={secondaryCtaClass}>
-                  Source
-                  <ArrowUpRight className="size-3.5 shrink-0" />
+                  Source <ArrowUpRight className="size-3.5 shrink-0" />
                 </a>
               ) : null}
             </div>
@@ -95,17 +83,20 @@ function ProjectCard({ project }: { project: Project }) {
           )}
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 }
 
 export function Projects() {
   return (
-    <RevealSection
+    <AnimatedSection
       id="projects"
-      aria-labelledby="projects-heading"
       className="relative mx-auto max-w-6xl scroll-mt-24 px-4 py-10 sm:px-6 sm:py-14"
     >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-[-10%] top-[5%] h-[500px] bg-[radial-gradient(ellipse_65%_45%_at_50%_25%,rgba(16,185,129,0.10),transparent_65%)] dark:bg-[radial-gradient(ellipse_65%_45%_at_50%_25%,rgba(52,211,153,0.13),transparent_65%)]"
+      />
       <div className="flex items-end justify-between gap-6">
         <div>
           <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.26em] text-emerald-700 dark:text-emerald-500">
@@ -124,11 +115,13 @@ export function Projects() {
         />
       </div>
 
-      <div className="mt-12 grid gap-5 md:grid-cols-2 md:gap-6">
+      <StaggerContainer className="mt-12 grid gap-5 md:grid-cols-2 md:gap-6" staggerDelay={0.1}>
         {projects.map((project) => (
-          <ProjectCard key={project.title} project={project} />
+          <StaggerItem key={project.title}>
+            <ProjectCard project={project} />
+          </StaggerItem>
         ))}
-      </div>
-    </RevealSection>
+      </StaggerContainer>
+    </AnimatedSection>
   );
 }
