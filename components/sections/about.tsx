@@ -43,32 +43,32 @@ export function About() {
         <p className="font-mono mb-6 text-[10px] font-semibold uppercase tracking-[0.26em] text-emerald-700 dark:text-emerald-500">
           Skills
         </p>
-        <StaggerContainer className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" staggerDelay={0.07}>
+        <StaggerContainer
+          className="border border-emerald-600/25 bg-background/70 dark:border-emerald-400/22 dark:bg-zinc-950/75 divide-y divide-emerald-600/15 dark:divide-emerald-400/12"
+          staggerDelay={0.05}
+        >
           {skillGroups.map((group) => (
             <StaggerItem key={group.label}>
-              <motion.div
-                className="space-y-3 border border-emerald-600/25 bg-background/70 p-5 dark:border-emerald-400/22 dark:bg-zinc-950/75"
-                whileHover={{ borderColor: "rgba(16,185,129,0.45)", transition: { duration: 0.2 } }}
-              >
-                <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-emerald-700 dark:text-emerald-500">
+              <div className="flex flex-col gap-3 px-5 py-4 sm:flex-row sm:items-start sm:gap-6">
+                <p className="font-mono w-full shrink-0 pt-0.5 text-[10px] font-semibold uppercase tracking-[0.22em] text-emerald-700 sm:w-40 dark:text-emerald-500">
                   {group.label}
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {group.items.map((item, i) => (
                     <motion.span
                       key={item}
-                      className="font-mono border border-emerald-600/30 bg-background/80 px-2.5 py-1.5 text-[12px] leading-snug tracking-[0.02em] text-zinc-800 dark:border-emerald-400/25 dark:bg-zinc-900/80 dark:text-zinc-200"
+                      className="font-mono border border-emerald-600/25 bg-background/80 px-2.5 py-1 text-[12px] leading-snug tracking-[0.02em] text-zinc-800 dark:border-emerald-400/22 dark:bg-zinc-900/80 dark:text-zinc-200"
                       whileHover={{ scale: 1.06, transition: { duration: 0.15 } }}
-                      initial={{ opacity: 0, y: 8 }}
+                      initial={{ opacity: 0, y: 6 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                      transition={{ delay: i * 0.03, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                      transition={{ delay: i * 0.025, duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                     >
                       {item}
                     </motion.span>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             </StaggerItem>
           ))}
         </StaggerContainer>
