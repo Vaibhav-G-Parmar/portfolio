@@ -1,21 +1,22 @@
 "use client";
 
 import Image from "next/image";
-import { RevealSection } from "@/components/ui/reveal-section";
-import { galleryCopy, galleryImages } from "@/content/gallery";
+import { AnimatedSection } from "@/components/ui/animated-section";
+import { galleryCopy } from "@/content/gallery";
+import type { GalleryImage } from "@/lib/gallery";
 
-const GALLERY_MAX = 2;
-
-export function Gallery() {
-  const displayImages = galleryImages.slice(0, GALLERY_MAX);
-  const hasImages = displayImages.length > 0;
+export function Gallery({ images }: { images: GalleryImage[] }) {
+  const hasImages = images.length > 0;
 
   return (
-    <RevealSection
+    <AnimatedSection
       id="gallery"
-      aria-labelledby="gallery-heading"
       className="relative mx-auto max-w-6xl scroll-mt-24 px-4 py-16 sm:px-6 sm:py-20"
     >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-[-15%] top-[0%] h-[400px] bg-[radial-gradient(ellipse_55%_50%_at_50%_20%,rgba(16,185,129,0.09),transparent_65%)] dark:bg-[radial-gradient(ellipse_55%_50%_at_50%_20%,rgba(52,211,153,0.11),transparent_65%)]"
+      />
       <div className="border border-emerald-600/25 bg-background/60 p-6 dark:border-emerald-400/22 dark:bg-zinc-950/60 sm:p-8">
         <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.26em] text-emerald-700 dark:text-emerald-500">
           {galleryCopy.eyebrow}
@@ -31,15 +32,15 @@ export function Gallery() {
         </p>
 
         {hasImages ? (
-          <ul className="mt-10 grid list-none grid-cols-2 gap-3 sm:gap-4">
-            {displayImages.map((img) => (
+          <ul className="mt-10 grid list-none grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
+            {images.map((img) => (
               <li key={img.src} className="group relative">
                 <figure className="relative aspect-[4/3] overflow-hidden border border-emerald-600/30 bg-zinc-900/40 dark:border-emerald-400/25">
                   <Image
                     src={img.src}
                     alt={img.alt}
                     fill
-                    sizes="(max-width: 768px) 50vw, 45vw"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 280px"
                     className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
                   />
                 </figure>
@@ -64,19 +65,15 @@ export function Gallery() {
               ))}
             </div>
             <p className="font-mono mt-6 max-w-xl text-[11px] leading-relaxed text-zinc-500 dark:text-zinc-500">
-              Place files in{" "}
+              Drop images into{" "}
               <code className="rounded border border-emerald-600/30 px-1.5 py-0.5 text-emerald-800 dark:border-emerald-400/30 dark:text-emerald-400">
                 public/gallery/
               </code>{" "}
-              and list them in{" "}
-              <code className="rounded border border-emerald-600/30 px-1.5 py-0.5 text-emerald-800 dark:border-emerald-400/30 dark:text-emerald-400">
-                content/gallery.ts
-              </code>
-              .
+              and they appear here automatically.
             </p>
           </div>
         )}
       </div>
-    </RevealSection>
+    </AnimatedSection>
   );
 }

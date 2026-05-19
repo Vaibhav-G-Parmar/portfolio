@@ -7,8 +7,11 @@ import { Contact } from "@/components/sections/contact";
 import { Hero } from "@/components/sections/hero";
 import { Gallery } from "@/components/sections/gallery";
 import { Projects } from "@/components/sections/projects";
+import { getGalleryImages } from "@/lib/gallery";
 
 export default function Home() {
+  const images = getGalleryImages();
+
   return (
     <>
       <ScrollProgress />
@@ -16,10 +19,10 @@ export default function Home() {
       <div className="relative z-10 flex min-h-screen flex-col">
         <SiteHeader />
         <main className="flex-1 pb-16">
-          <Hero />
+          <Hero images={images} />
           <About />
           <Projects />
-          <Gallery />
+          <Gallery images={images} />
           <Contact />
         </main>
         <SiteFooter />
