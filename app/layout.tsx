@@ -63,6 +63,7 @@ export const metadata: Metadata = {
     description: seoDescription,
   },
   robots: { index: true, follow: true },
+  appleWebApp: false,
 };
 
 export default function RootLayout({

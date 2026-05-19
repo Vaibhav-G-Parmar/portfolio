@@ -27,7 +27,6 @@ function ContactForm() {
 
     window.location.href = mailto;
 
-    // Show success after a short delay (email client opens in background)
     setTimeout(() => {
       setState("success");
       form.reset();
@@ -134,15 +133,6 @@ export function Contact() {
       />
 
       <div className="relative border border-emerald-600/30 bg-background/75 dark:border-emerald-400/25 dark:bg-zinc-950/80">
-        {/* Terminal chrome */}
-        <div
-          aria-hidden
-          className="flex h-9 items-center gap-1.5 border-b border-emerald-600/25 px-4 dark:border-emerald-400/20"
-        >
-          <span className="size-2.5 rounded-full bg-red-500/70" />
-          <span className="size-2.5 rounded-full bg-amber-500/70" />
-          <span className="size-2.5 rounded-full bg-emerald-500/70" />
-        </div>
         <div className="p-8 sm:p-10">
           <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.26em] text-emerald-700 dark:text-emerald-500">
             Contact
