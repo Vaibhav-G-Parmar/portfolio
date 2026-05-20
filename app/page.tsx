@@ -1,4 +1,5 @@
 import { TerminalBackdrop } from "@/components/effects/terminal-backdrop";
+import { BackToTop } from "@/components/effects/back-to-top";
 import { ScrollProgress } from "@/components/effects/scroll-progress";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
@@ -16,6 +17,7 @@ export default function Home() {
   return (
     <>
       <ScrollProgress />
+      <BackToTop />
       <TerminalBackdrop />
       <div className="relative z-10 flex min-h-screen flex-col">
         <SiteHeader />
