@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { galleryCopy } from "@/content/gallery";
 import type { GalleryImage } from "@/lib/gallery";
@@ -31,15 +32,18 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
           <ul className="mt-10 grid list-none grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
             {images.map((img) => (
               <li key={img.src} className="group relative">
-                <figure className="relative aspect-[4/3] overflow-hidden border border-emerald-600/30 bg-zinc-900/40 dark:border-emerald-400/25">
+                <motion.figure
+                  className="relative aspect-[4/3] overflow-hidden border border-emerald-600/30 bg-zinc-900/40 dark:border-emerald-400/25"
+                  whileHover={{ borderColor: "rgba(16, 185, 129, 0.45)", transition: { duration: 0.22 } }}
+                >
                   <Image
                     src={img.src}
                     alt={img.alt}
                     fill
                     sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 280px"
-                    className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                   />
-                </figure>
+                </motion.figure>
               </li>
             ))}
           </ul>
