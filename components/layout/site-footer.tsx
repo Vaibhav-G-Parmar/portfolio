@@ -1,5 +1,9 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { BriefcaseBusiness, Code2, Mail } from "lucide-react";
 import { brandPromise, siteProfile } from "@/content/site";
+import { hoverLift } from "@/components/ui/motion-presets";
 
 export function SiteFooter() {
   return (
@@ -15,32 +19,38 @@ export function SiteFooter() {
           </p>
         </div>
         <nav aria-label="Social" className="font-mono flex flex-wrap items-center gap-2">
-          <a
+          <motion.a
             href={siteProfile.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 border border-emerald-600/30 bg-background/80 px-4 py-2 text-[12px] uppercase tracking-[0.1em] text-foreground/90 transition hover:border-emerald-600/50 dark:border-emerald-400/30 dark:hover:border-emerald-400/50"
+            className="inline-flex items-center gap-2 border border-emerald-600/30 bg-background/80 px-4 py-2 text-[12px] uppercase tracking-[0.1em] text-foreground/90 dark:border-emerald-400/30"
+            {...hoverLift}
           >
             <Code2 className="size-4" aria-hidden /> GitHub
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href={siteProfile.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 border border-emerald-600/30 bg-background/80 px-4 py-2 text-[12px] uppercase tracking-[0.1em] text-foreground/90 transition hover:border-emerald-600/50 dark:border-emerald-400/30 dark:hover:border-emerald-400/50"
+            className="inline-flex items-center gap-2 border border-emerald-600/30 bg-background/80 px-4 py-2 text-[12px] uppercase tracking-[0.1em] text-foreground/90 dark:border-emerald-400/30"
+            {...hoverLift}
           >
             <BriefcaseBusiness className="size-4" aria-hidden /> LinkedIn
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href={`mailto:${siteProfile.email}`}
-            className="inline-flex items-center gap-2 border border-emerald-600/30 bg-background/80 px-4 py-2 text-[12px] uppercase tracking-[0.1em] text-foreground/90 transition hover:border-emerald-600/50 dark:border-emerald-400/30 dark:hover:border-emerald-400/50"
+            className="inline-flex items-center gap-2 border border-emerald-600/30 bg-background/80 px-4 py-2 text-[12px] uppercase tracking-[0.1em] text-foreground/90 dark:border-emerald-400/30"
+            {...hoverLift}
           >
             <Mail className="size-4" aria-hidden /> Email
-          </a>
+          </motion.a>
         </nav>
       </div>
-      <p className="font-mono mx-auto mt-12 max-w-6xl px-4 text-[11px] leading-relaxed tracking-[0.06em] text-zinc-500 sm:px-6 dark:text-zinc-500">
+      <p className="font-mono mx-auto mt-12 max-w-6xl px-4 text-center text-[11px] leading-relaxed tracking-[0.06em] text-zinc-500 sm:px-6 dark:text-zinc-500">
         {brandPromise}
+      </p>
+      <p className="font-mono mx-auto mt-4 max-w-6xl px-4 text-center text-[10px] tracking-[0.08em] text-zinc-500 sm:px-6 dark:text-zinc-500">
+        © {new Date().getFullYear()} {siteProfile.name}. All rights reserved.
       </p>
     </footer>
   );
