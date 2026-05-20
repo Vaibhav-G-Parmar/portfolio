@@ -13,10 +13,6 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
       id="gallery"
       className="relative mx-auto max-w-6xl scroll-mt-24 px-4 py-16 sm:px-6 sm:py-20"
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-[-15%] top-[0%] h-[400px] bg-[radial-gradient(ellipse_55%_50%_at_50%_20%,rgba(16,185,129,0.09),transparent_65%)] dark:bg-[radial-gradient(ellipse_55%_50%_at_50%_20%,rgba(52,211,153,0.11),transparent_65%)]"
-      />
       <div className="border border-emerald-600/25 bg-background/60 p-6 dark:border-emerald-400/22 dark:bg-zinc-950/60 sm:p-8">
         <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.26em] text-emerald-700 dark:text-emerald-500">
           {galleryCopy.eyebrow}

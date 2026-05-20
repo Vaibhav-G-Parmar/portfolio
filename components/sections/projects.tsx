@@ -93,10 +93,6 @@ export function Projects() {
       id="projects"
       className="relative mx-auto max-w-6xl scroll-mt-24 px-4 py-10 sm:px-6 sm:py-14"
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-[-10%] top-[5%] h-[500px] bg-[radial-gradient(ellipse_65%_45%_at_50%_25%,rgba(16,185,129,0.10),transparent_65%)] dark:bg-[radial-gradient(ellipse_65%_45%_at_50%_25%,rgba(52,211,153,0.13),transparent_65%)]"
-      />
       <div className="flex items-end justify-between gap-6">
         <div>
           <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.26em] text-emerald-700 dark:text-emerald-500">

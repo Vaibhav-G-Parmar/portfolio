@@ -11,11 +11,6 @@ export function About() {
       id="about"
       className="relative mx-auto max-w-6xl scroll-mt-24 px-4 py-24 sm:px-6 sm:py-28"
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-[-15%] top-[10%] h-[450px] bg-[radial-gradient(ellipse_60%_50%_at_50%_30%,rgba(16,185,129,0.10),transparent_65%)] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_30%,rgba(52,211,153,0.12),transparent_65%)]"
-      />
-
       {/* About bio */}
       <div>
         <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.26em] text-emerald-700 dark:text-emerald-500">
