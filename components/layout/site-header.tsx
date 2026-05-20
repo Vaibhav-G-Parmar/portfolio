@@ -5,6 +5,7 @@ import { Mail, Menu, Moon, Sun, Terminal } from "lucide-react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { siteProfile } from "@/content/site";
+import { useActiveSection } from "@/hooks/use-active-section";
 
 function GitHubIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -34,6 +35,7 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const activeSection = useActiveSection();
 
   useEffect(() => {
     setMounted(true);
@@ -65,15 +67,26 @@ export function SiteHeader() {
         </Link>
 
         <nav className="hidden items-center gap-0.5 md:flex">
-          {NAV.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="border border-transparent px-3 py-2 text-[11px] uppercase tracking-[0.18em] text-foreground/65 transition-colors hover:border-emerald-600/30 hover:text-emerald-700 dark:hover:border-emerald-400/25 dark:hover:text-emerald-400"
-            >
-              ▸ {item.label}
-            </a>
-          ))}
+          {NAV.map((item) => {
+            const sectionId = item.href.replace("#", "");
+            const isActive = activeSection === sectionId;
+            return (
+              <a
+                key={item.href}
+                href={item.href}
+                className={`relative border px-3 py-2 text-[11px] uppercase tracking-[0.18em] transition-colors ${
+                  isActive
+                    ? "border-emerald-600/30 text-emerald-700 dark:border-emerald-400/25 dark:text-emerald-400"
+                    : "border-transparent text-foreground/65 hover:border-emerald-600/30 hover:text-emerald-700 dark:hover:border-emerald-400/25 dark:hover:text-emerald-400"
+                }`}
+              >
+                ▸ {item.label}
+                {isActive && (
+                  <span className="absolute bottom-0 left-3 right-3 h-px bg-emerald-600 dark:bg-emerald-400" />
+                )}
+              </a>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-2">
@@ -142,16 +155,24 @@ export function SiteHeader() {
         }`}
       >
         <div className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3">
-          {NAV.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              onClick={() => setOpen(false)}
-              className="px-3 py-3 text-[13px] uppercase tracking-[0.14em] text-foreground/80 transition-colors hover:bg-emerald-600/10 hover:text-emerald-700 dark:hover:bg-emerald-400/10 dark:hover:text-emerald-400"
-            >
-              ▸ {item.label}
-            </a>
-          ))}
+          {NAV.map((item) => {
+            const sectionId = item.href.replace("#", "");
+            const isActive = activeSection === sectionId;
+            return (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className={`px-3 py-3 text-[13px] uppercase tracking-[0.14em] transition-colors hover:bg-emerald-600/10 hover:text-emerald-700 dark:hover:bg-emerald-400/10 dark:hover:text-emerald-400 ${
+                  isActive
+                    ? "border-l-2 border-emerald-500 text-emerald-700 dark:text-emerald-400"
+                    : "text-foreground/80"
+                }`}
+              >
+                ▸ {item.label}
+              </a>
+            );
+          })}
 
           <div className="mt-2 flex items-center gap-2 px-3 pb-1">
             <a
