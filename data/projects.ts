@@ -18,7 +18,7 @@ export const projects: readonly Project[] = [
       "Single-page event countdown site for an upcoming community gathering. React 18, Vite 5, CSS Modules. Fullscreen crossfade slideshow with randomized transitions, privacy mode toggle, slide lock panel (5 min to 1 day), and config-driven architecture. Deployed on Netlify with GitHub Actions CI/CD.",
     tags: ["React", "Vite", "CSS Modules", "GitHub Actions", "Netlify"],
     links: {
-      live: "https://hpbu2028-the-countdown.netlify.app",
+      live: "https://hpbu2028.netlify.app",
     },
     accent: "aurora",
   },
