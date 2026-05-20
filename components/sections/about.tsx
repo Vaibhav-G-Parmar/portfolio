@@ -1,9 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { StaggerContainer, StaggerItem } from "@/components/ui/stagger";
-import { aboutCopy, aboutHeading, skillGroups } from "@/content/site";
+import { aboutCopy, aboutHeading } from "@/content/site";
 
 export function About() {
   return (
@@ -11,59 +10,20 @@ export function About() {
       id="about"
       className="relative mx-auto max-w-6xl scroll-mt-24 px-4 py-24 sm:px-6 sm:py-28"
     >
-      {/* About bio */}
-      <div>
-        <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.26em] text-emerald-700 dark:text-emerald-500">
-          About
-        </p>
-        <h2
-          id="about-heading"
-          className="font-display mt-4 text-2xl font-semibold leading-snug text-foreground sm:text-3xl"
-        >
-          {aboutHeading}
-        </h2>
-        <div className="mt-6 border-l-2 border-emerald-600/35 pl-6 dark:border-emerald-400/30">
-          <StaggerContainer className="max-w-3xl space-y-4 text-[15px] leading-[1.75] text-zinc-700 dark:text-zinc-300" delay={0.1}>
-            {aboutCopy.bio.map((p, i) => (
-              <StaggerItem key={i}>
-                <p>{p}</p>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </div>
-      </div>
-
-      {/* Skills */}
-      <div className="mt-14">
-        <p className="font-mono mb-6 text-[10px] font-semibold uppercase tracking-[0.26em] text-emerald-700 dark:text-emerald-500">
-          Skills
-        </p>
-        <StaggerContainer
-          className="border border-emerald-600/25 bg-background/70 dark:border-emerald-400/22 dark:bg-zinc-950/75 divide-y divide-emerald-600/15 dark:divide-emerald-400/12"
-          staggerDelay={0.05}
-        >
-          {skillGroups.map((group) => (
-            <StaggerItem key={group.label}>
-              <div className="flex flex-col gap-3 px-5 py-4 sm:flex-row sm:items-start sm:gap-6">
-                <p className="font-mono w-full shrink-0 pt-0.5 text-[10px] font-semibold uppercase tracking-[0.22em] text-emerald-700 sm:w-40 dark:text-emerald-500">
-                  {group.label}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {group.items.map((item, i) => (
-                    <motion.span
-                      key={item}
-                      className="font-mono border border-emerald-600/25 bg-background/80 px-2.5 py-1 text-[12px] leading-snug tracking-[0.02em] text-zinc-800 dark:border-emerald-400/22 dark:bg-zinc-900/80 dark:text-zinc-200"
-                      whileHover={{ scale: 1.06, transition: { duration: 0.15 } }}
-                      initial={{ opacity: 0, y: 6 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.025, duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                    >
-                      {item}
-                    </motion.span>
-                  ))}
-                </div>
-              </div>
+      <p className="font-mono text-[13px] font-bold uppercase leading-snug tracking-[0.18em] text-emerald-600 dark:text-emerald-400">
+        About
+      </p>
+      <h2
+        id="about-heading"
+        className="font-display mt-4 text-2xl font-semibold leading-snug text-foreground sm:text-3xl"
+      >
+        {aboutHeading}
+      </h2>
+      <div className="mt-6 border-l-2 border-emerald-600/35 pl-6 dark:border-emerald-400/30">
+        <StaggerContainer className="max-w-3xl space-y-4 text-[15px] leading-[1.75] text-zinc-700 dark:text-zinc-300" delay={0.1}>
+          {aboutCopy.bio.map((p, i) => (
+            <StaggerItem key={i}>
+              <p>{p}</p>
             </StaggerItem>
           ))}
         </StaggerContainer>

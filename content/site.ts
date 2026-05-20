@@ -37,6 +37,9 @@ export const heroHighlights = [
 export const aboutHeading =
   "Mainframe depth, distributed delivery, fewer surprises in production.";
 
+export const skillsHeading =
+  "Mainframe, cloud, APIs, and the tools I use to ship.";
+
 export const aboutCopy = {
   bio: [
     "AI Software Engineer in Toronto. 4+ years. I connect z/OS and DB2 backends to modern consumers through REST APIs, messaging, and integrations that hold up at scale.",
@@ -88,6 +91,7 @@ export const skillGroups = [
   },
 ] as const;
 
+export const projectsEyebrow = "Projects";
 export const projectsHeading = "Shipping outcomes you can trace end to end.";
 
 export const contactHeading = "Tell me what \"better\" looks like for your team.";

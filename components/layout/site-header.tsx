@@ -25,6 +25,7 @@ function LinkedInIcon(props: React.SVGProps<SVGSVGElement>) {
 
 const NAV = [
   { href: "#about", label: "About" },
+  { href: "#skills", label: "Skills" },
   { href: "#projects", label: "Projects" },
   { href: "#gallery", label: "Gallery" },
   { href: "#contact", label: "Contact" },
