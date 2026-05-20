@@ -14,7 +14,7 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
       className="relative mx-auto max-w-6xl scroll-mt-24 px-4 py-16 sm:px-6 sm:py-20"
     >
       <div className="border border-emerald-600/25 bg-background/60 p-6 dark:border-emerald-400/22 dark:bg-zinc-950/60 sm:p-8">
-        <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.26em] text-emerald-700 dark:text-emerald-500">
+        <p className="font-mono text-[13px] font-bold uppercase leading-snug tracking-[0.18em] text-emerald-600 dark:text-emerald-400">
           {galleryCopy.eyebrow}
         </p>
         <h2

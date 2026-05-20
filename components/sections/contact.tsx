@@ -136,7 +136,7 @@ export function Contact() {
     >
       <div className="relative border border-emerald-600/30 bg-background/75 dark:border-emerald-400/25 dark:bg-zinc-950/80">
         <div className="p-8 sm:p-10">
-          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.26em] text-emerald-700 dark:text-emerald-500">
+          <p className="font-mono text-[13px] font-bold uppercase leading-snug tracking-[0.18em] text-emerald-600 dark:text-emerald-400">
             Contact
           </p>
           <h2
@@ -203,7 +203,7 @@ export function Contact() {
 
           {/* Inline contact form */}
           <div className="mt-10 border-t border-emerald-600/20 pt-8 dark:border-emerald-400/15">
-            <p className="font-mono mb-5 text-[10px] font-semibold uppercase tracking-[0.22em] text-emerald-700 dark:text-emerald-500">
+            <p className="font-mono mb-5 text-[13px] font-bold uppercase leading-snug tracking-[0.18em] text-emerald-600 dark:text-emerald-400">
               Or send a message directly
             </p>
             <ContactForm />

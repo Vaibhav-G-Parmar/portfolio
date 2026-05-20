@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { StaggerContainer, StaggerItem } from "@/components/ui/stagger";
-import { projectsHeading } from "@/content/site";
+import { projectsEyebrow, projectsHeading } from "@/content/site";
 import { projects, type Project } from "@/data/projects";
 
 const primaryCtaClass =
@@ -95,8 +95,8 @@ export function Projects() {
     >
       <div className="flex items-end justify-between gap-6">
         <div>
-          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.26em] text-emerald-700 dark:text-emerald-500">
-            Selected work
+          <p className="font-mono text-[13px] font-bold uppercase leading-snug tracking-[0.18em] text-emerald-600 dark:text-emerald-400">
+            {projectsEyebrow}
           </p>
           <h2
             id="projects-heading"
