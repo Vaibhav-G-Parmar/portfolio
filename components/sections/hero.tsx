@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, BriefcaseBusiness, Layers2 } from "lucide-react";
 import { heroCopy, heroHighlights, siteProfile } from "@/content/site";
+import { hoverCard, hoverLift } from "@/components/ui/motion-presets";
 import { Typewriter } from "@/components/ui/typewriter";
 import type { GalleryImage } from "@/lib/gallery";
 
@@ -12,22 +13,23 @@ function HeroGallery({ images }: { images: GalleryImage[] }) {
   const img = images[0];
 
   return (
-    <div
-      className="hero-fade-in hero-fade-in-delay-1 relative w-full overflow-hidden border border-emerald-600/25 bg-zinc-900/40 dark:border-emerald-400/22"
+    <motion.div
+      className="hero-fade-in hero-fade-in-delay-1 group relative w-full overflow-hidden border border-emerald-600/25 bg-zinc-900/40 dark:border-emerald-400/22"
       style={{ aspectRatio: "4/3" }}
+      whileHover={{ scale: 1.02, borderColor: "rgba(16, 185, 129, 0.45)", transition: { duration: 0.22 } }}
     >
       <Image
         src={img.src}
         alt={img.alt}
         fill
-        className="object-cover"
-            sizes="(max-width: 1024px) 100vw, 380px"
+        className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+        sizes="(max-width: 1024px) 100vw, 380px"
         priority
       />
       {/* Corner scan-line decoration */}
       <span aria-hidden className="pointer-events-none absolute left-0 top-0 h-6 w-6 border-l-2 border-t-2 border-emerald-500/50" />
       <span aria-hidden className="pointer-events-none absolute bottom-0 right-0 h-6 w-6 border-b-2 border-r-2 border-emerald-500/50" />
-    </div>
+    </motion.div>
   );
 }
 
@@ -71,8 +73,7 @@ export function Hero({ images }: { images: GalleryImage[] }) {
               <motion.a
                 href="#projects"
                 className="group inline-flex items-center justify-center gap-2 border border-emerald-600 bg-emerald-700 px-7 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-white shadow-[0_0_24px_-8px_rgba(16,185,129,0.55)] dark:border-emerald-500 dark:bg-emerald-600"
-                whileHover={{ scale: 1.03, transition: { duration: 0.18 } }}
-                whileTap={{ scale: 0.97 }}
+                {...hoverLift}
               >
                 <Layers2 className="size-[17px] opacity-95" aria-hidden />
                 <span>{heroCopy.primaryCta}</span>
@@ -82,8 +83,13 @@ export function Hero({ images }: { images: GalleryImage[] }) {
               <motion.a
                 href="#contact"
                 className="inline-flex items-center justify-center gap-2 border border-emerald-600/40 bg-background/80 px-7 py-3 text-[12px] font-semibold uppercase tracking-[0.12em] text-foreground/90 backdrop-blur-sm dark:border-emerald-400/35"
-                whileHover={{ scale: 1.03, borderColor: "rgba(16,185,129,0.6)", transition: { duration: 0.18 } }}
-                whileTap={{ scale: 0.97 }}
+                {...hoverLift}
+                whileHover={{
+                  scale: 1.03,
+                  y: -2,
+                  borderColor: "rgba(16, 185, 129, 0.6)",
+                  transition: { duration: 0.18 },
+                }}
               >
                 <BriefcaseBusiness className="size-4" aria-hidden />
                 <span>{heroCopy.secondaryCta}</span>
@@ -107,9 +113,10 @@ export function Hero({ images }: { images: GalleryImage[] }) {
         {/* ── Full-width highlight cards ── */}
         <div className="font-mono mt-12 grid gap-3 sm:grid-cols-3">
           {heroHighlights.map((row) => (
-            <div
+            <motion.div
               key={row.k}
               className="hero-fade-in hero-card border border-emerald-600/25 bg-background/60 p-5 dark:border-emerald-400/22 dark:bg-zinc-950/70"
+              {...hoverCard}
             >
               <p className="text-[13px] font-bold uppercase tracking-[0.18em] text-emerald-600 dark:text-emerald-400">
                 {row.k}
@@ -117,7 +124,7 @@ export function Hero({ images }: { images: GalleryImage[] }) {
               <p className="mt-2 text-[12px] leading-snug tracking-[0.02em] text-zinc-700 dark:text-zinc-300">
                 {row.v}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

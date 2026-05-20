@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/animated-section";
+import { hoverCard, hoverChip, hoverLift } from "@/components/ui/motion-presets";
 import { StaggerContainer, StaggerItem } from "@/components/ui/stagger";
 import { projectsEyebrow, projectsHeading } from "@/content/site";
 import { projects, type Project } from "@/data/projects";
@@ -20,8 +21,7 @@ function ProjectCard({ project }: { project: Project }) {
   return (
     <motion.article
       className="group relative flex h-full flex-col overflow-hidden border border-emerald-600/25 bg-background/65 p-6 dark:border-emerald-400/22 dark:bg-zinc-950/70"
-      whileHover={{ y: -4, borderColor: "rgba(16,185,129,0.45)", transition: { duration: 0.22 } }}
-      whileTap={{ scale: 0.99 }}
+      {...hoverCard}
     >
       <div
         aria-hidden
@@ -48,7 +48,7 @@ function ProjectCard({ project }: { project: Project }) {
             <motion.span
               key={t}
               className="h-fit border border-emerald-600/25 bg-background/70 px-2 py-1 text-[11px] tracking-[0.02em] text-zinc-700 dark:border-emerald-400/22 dark:bg-zinc-900/80 dark:text-zinc-300"
-              whileHover={{ scale: 1.05, transition: { duration: 0.15 } }}
+              {...hoverChip}
             >
               {t}
             </motion.span>
@@ -58,24 +58,24 @@ function ProjectCard({ project }: { project: Project }) {
           {hasLinks ? (
             <div className="font-mono flex flex-wrap items-center gap-3">
               {live ? (
-                <a href={live} target="_blank" rel="noopener noreferrer" className={primaryCtaClass} aria-label={`Visit ${project.title} (opens in new tab)`}>
+                <motion.a href={live} target="_blank" rel="noopener noreferrer" className={primaryCtaClass} aria-label={`Visit ${project.title} (opens in new tab)`} {...hoverLift}>
                   Visit site <ArrowUpRight className="size-3.5 shrink-0" />
-                </a>
+                </motion.a>
               ) : null}
               {googlePlay ? (
-                <a href={googlePlay} target="_blank" rel="noopener noreferrer" className={primaryCtaClass}>
+                <motion.a href={googlePlay} target="_blank" rel="noopener noreferrer" className={primaryCtaClass} {...hoverLift}>
                   Google Play <ArrowUpRight className="size-3.5 shrink-0" />
-                </a>
+                </motion.a>
               ) : null}
               {appStore ? (
-                <a href={appStore} target="_blank" rel="noopener noreferrer" className={secondaryCtaClass}>
+                <motion.a href={appStore} target="_blank" rel="noopener noreferrer" className={secondaryCtaClass} {...hoverLift}>
                   App Store <ArrowUpRight className="size-3.5 shrink-0" />
-                </a>
+                </motion.a>
               ) : null}
               {repo ? (
-                <a href={repo} target="_blank" rel="noopener noreferrer" className={secondaryCtaClass}>
+                <motion.a href={repo} target="_blank" rel="noopener noreferrer" className={secondaryCtaClass} {...hoverLift}>
                   Source <ArrowUpRight className="size-3.5 shrink-0" />
-                </a>
+                </motion.a>
               ) : null}
             </div>
           ) : (

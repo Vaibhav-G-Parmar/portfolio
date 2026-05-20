@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { Mail, Menu, Moon, Sun, Terminal } from "lucide-react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { siteProfile } from "@/content/site";
+import { hoverIcon } from "@/components/ui/motion-presets";
 import { useActiveSection } from "@/hooks/use-active-section";
 
 function GitHubIcon(props: React.SVGProps<SVGSVGElement>) {
@@ -58,9 +60,12 @@ export function SiteHeader() {
           href="#top"
           className="group inline-flex items-center gap-2.5 text-[13px] font-medium uppercase tracking-[0.14em] text-foreground"
         >
-          <span className="flex size-9 items-center justify-center border border-emerald-600/35 bg-background/80 text-emerald-700 dark:border-emerald-400/35 dark:text-emerald-400">
+          <motion.span
+            className="flex size-9 items-center justify-center border border-emerald-600/35 bg-background/80 text-emerald-700 dark:border-emerald-400/35 dark:text-emerald-400"
+            {...hoverIcon}
+          >
             <Terminal className="size-[17px]" aria-hidden />
-          </span>
+          </motion.span>
           <span className="leading-tight">
             <span className="hidden text-emerald-700 dark:text-emerald-400 sm:inline">{siteProfile.name}</span>
             <span className="sm:hidden">{siteProfile.name.split(" ")[0]}</span>
@@ -72,7 +77,7 @@ export function SiteHeader() {
             const sectionId = item.href.replace("#", "");
             const isActive = activeSection === sectionId;
             return (
-              <a
+              <motion.a
                 key={item.href}
                 href={item.href}
                 className={`relative border px-3 py-2 text-[11px] uppercase tracking-[0.18em] transition-colors ${
@@ -80,46 +85,51 @@ export function SiteHeader() {
                     ? "border-emerald-600/30 text-emerald-700 dark:border-emerald-400/25 dark:text-emerald-400"
                     : "border-transparent text-foreground/65 hover:border-emerald-600/30 hover:text-emerald-700 dark:hover:border-emerald-400/25 dark:hover:text-emerald-400"
                 }`}
+                whileHover={isActive ? undefined : { y: -1, scale: 1.02, transition: { duration: 0.15 } }}
+                whileTap={{ scale: 0.98 }}
               >
                 ▸ {item.label}
                 {isActive && (
                   <span className="absolute bottom-0 left-3 right-3 h-px bg-emerald-600 dark:bg-emerald-400" />
                 )}
-              </a>
+              </motion.a>
             );
           })}
         </nav>
 
         <div className="flex items-center gap-2">
           <div className="hidden items-center gap-2 md:flex">
-            <a
+            <motion.a
               href={siteProfile.github}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
               className="inline-flex size-10 items-center justify-center border border-emerald-600/25 bg-background/80 text-foreground/80 transition hover:border-emerald-600/45 hover:text-foreground dark:border-emerald-400/25 dark:bg-zinc-950/80"
+              {...hoverIcon}
             >
               <GitHubIcon className="size-[18px]" />
-            </a>
-            <a
+            </motion.a>
+            <motion.a
               href={siteProfile.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
               className="inline-flex size-10 items-center justify-center border border-emerald-600/25 bg-background/80 text-foreground/80 transition hover:border-emerald-600/45 hover:text-foreground dark:border-emerald-400/25 dark:bg-zinc-950/80"
+              {...hoverIcon}
             >
               <LinkedInIcon className="size-[18px]" />
-            </a>
-            <a
+            </motion.a>
+            <motion.a
               href={`mailto:${siteProfile.email}`}
               aria-label="Email"
               className="inline-flex size-10 items-center justify-center border border-emerald-600/25 bg-background/80 text-foreground/80 transition hover:border-emerald-600/45 hover:text-foreground dark:border-emerald-400/25 dark:bg-zinc-950/80"
+              {...hoverIcon}
             >
               <Mail className="size-[18px]" aria-hidden />
-            </a>
+            </motion.a>
           </div>
 
-          <button
+          <motion.button
             type="button"
             onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
             aria-label={
@@ -129,6 +139,7 @@ export function SiteHeader() {
             }
             className="inline-flex size-10 items-center justify-center border border-emerald-600/25 bg-background/80 text-foreground/85 transition hover:border-emerald-600/45 hover:text-foreground disabled:pointer-events-none dark:border-emerald-400/25 dark:bg-zinc-950/80"
             disabled={!mounted}
+            {...hoverIcon}
           >
             {!mounted ? (
               <Sun className="size-[18px] opacity-35" aria-hidden />
@@ -137,16 +148,17 @@ export function SiteHeader() {
             ) : (
               <Sun className="size-[18px]" />
             )}
-          </button>
+          </motion.button>
 
-          <button
+          <motion.button
             type="button"
             className="inline-flex size-10 items-center justify-center border border-emerald-600/25 bg-background/80 md:hidden dark:border-emerald-400/25"
             aria-label="Open menu"
             onClick={() => setOpen((v) => !v)}
+            {...hoverIcon}
           >
             <Menu className="size-5" />
-          </button>
+          </motion.button>
         </div>
       </div>
 
@@ -160,7 +172,7 @@ export function SiteHeader() {
             const sectionId = item.href.replace("#", "");
             const isActive = activeSection === sectionId;
             return (
-              <a
+              <motion.a
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
@@ -169,38 +181,43 @@ export function SiteHeader() {
                     ? "border-l-2 border-emerald-500 text-emerald-700 dark:text-emerald-400"
                     : "text-foreground/80"
                 }`}
+                whileHover={{ x: 4, transition: { duration: 0.15 } }}
+                whileTap={{ scale: 0.98 }}
               >
                 ▸ {item.label}
-              </a>
+              </motion.a>
             );
           })}
 
           <div className="mt-2 flex items-center gap-2 px-3 pb-1">
-            <a
+            <motion.a
               href={siteProfile.github}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
               className="inline-flex size-10 items-center justify-center border border-emerald-600/25 bg-background/80 text-foreground/80 transition hover:border-emerald-600/45 hover:text-foreground dark:border-emerald-400/25 dark:bg-zinc-950/80"
+              {...hoverIcon}
             >
               <GitHubIcon className="size-[18px]" />
-            </a>
-            <a
+            </motion.a>
+            <motion.a
               href={siteProfile.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
               className="inline-flex size-10 items-center justify-center border border-emerald-600/25 bg-background/80 text-foreground/80 transition hover:border-emerald-600/45 hover:text-foreground dark:border-emerald-400/25 dark:bg-zinc-950/80"
+              {...hoverIcon}
             >
               <LinkedInIcon className="size-[18px]" />
-            </a>
-            <a
+            </motion.a>
+            <motion.a
               href={`mailto:${siteProfile.email}`}
               aria-label="Email"
               className="inline-flex size-10 items-center justify-center border border-emerald-600/25 bg-background/80 text-foreground/80 transition hover:border-emerald-600/45 hover:text-foreground dark:border-emerald-400/25 dark:bg-zinc-950/80"
+              {...hoverIcon}
             >
               <Mail className="size-[18px]" aria-hidden />
-            </a>
+            </motion.a>
           </div>
         </div>
       </div>

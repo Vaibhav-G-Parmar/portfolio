@@ -4,6 +4,7 @@ import { useActionState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { AlertCircle, ArrowUpRight, CheckCircle, Download, Loader2, Mail, Phone, Send } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/animated-section";
+import { hoverLift } from "@/components/ui/motion-presets";
 import { StaggerContainer, StaggerItem } from "@/components/ui/stagger";
 import { contactHeading, contactLead, siteProfile } from "@/content/site";
 import { sendContactEmail, type ContactFormState } from "@/app/actions/contact";
@@ -112,7 +113,7 @@ function ContactForm() {
             type="submit"
             disabled={isPending}
             className="font-mono inline-flex items-center gap-2 border border-emerald-600 bg-emerald-700 px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-white disabled:opacity-60 dark:border-emerald-500 dark:bg-emerald-600"
-            whileHover={{ scale: isPending ? 1 : 1.02, transition: { duration: 0.15 } }}
+            whileHover={{ scale: isPending ? 1 : 1.03, y: isPending ? 0 : -2, transition: { duration: 0.15 } }}
             whileTap={{ scale: 0.97 }}
           >
             {isPending ? (
@@ -156,8 +157,7 @@ export function Contact() {
                 href={`mailto:${siteProfile.email}`}
                 aria-label={`Email ${siteProfile.email}`}
                 className="inline-flex items-center justify-center gap-2 border border-emerald-600 bg-emerald-700 px-7 py-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-white dark:border-emerald-500 dark:bg-emerald-600"
-                whileHover={{ scale: 1.03, transition: { duration: 0.18 } }}
-                whileTap={{ scale: 0.97 }}
+                {...hoverLift}
               >
                 <Mail className="size-4" aria-hidden />
                 Email
@@ -167,8 +167,8 @@ export function Contact() {
               <motion.a
                 href={`tel:${siteProfile.phone}`}
                 className="inline-flex items-center justify-center gap-2 border border-emerald-600/35 bg-background/80 px-7 py-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-foreground/90 backdrop-blur-sm"
-                whileHover={{ scale: 1.03, borderColor: "rgba(16,185,129,0.6)", transition: { duration: 0.18 } }}
-                whileTap={{ scale: 0.97 }}
+                {...hoverLift}
+                whileHover={{ scale: 1.03, y: -2, borderColor: "rgba(16, 185, 129, 0.6)", transition: { duration: 0.18 } }}
               >
                 <Phone className="size-4" aria-hidden />
                 {siteProfile.phoneDisplay}
@@ -180,8 +180,8 @@ export function Contact() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 border border-emerald-600/35 bg-background/80 px-7 py-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-foreground/90 backdrop-blur-sm"
-                whileHover={{ scale: 1.03, borderColor: "rgba(16,185,129,0.6)", transition: { duration: 0.18 } }}
-                whileTap={{ scale: 0.97 }}
+                {...hoverLift}
+                whileHover={{ scale: 1.03, y: -2, borderColor: "rgba(16, 185, 129, 0.6)", transition: { duration: 0.18 } }}
               >
                 LinkedIn
                 <ArrowUpRight className="size-4" aria-hidden />
@@ -192,8 +192,8 @@ export function Contact() {
                 href="/resume.pdf"
                 download
                 className="inline-flex items-center justify-center gap-2 border border-emerald-600/35 bg-background/80 px-7 py-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-foreground/90 backdrop-blur-sm"
-                whileHover={{ scale: 1.03, borderColor: "rgba(16,185,129,0.6)", transition: { duration: 0.18 } }}
-                whileTap={{ scale: 0.97 }}
+                {...hoverLift}
+                whileHover={{ scale: 1.03, y: -2, borderColor: "rgba(16, 185, 129, 0.6)", transition: { duration: 0.18 } }}
               >
                 <Download className="size-4" aria-hidden />
                 Download resume
