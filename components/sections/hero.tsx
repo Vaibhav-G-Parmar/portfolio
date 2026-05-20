@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, BriefcaseBusiness, Layers2 } from "lucide-react";
 import { heroCopy, heroHighlights, siteProfile } from "@/content/site";
+import { Typewriter } from "@/components/ui/typewriter";
 import type { GalleryImage } from "@/lib/gallery";
 
 function HeroGallery({ images }: { images: GalleryImage[] }) {
@@ -37,10 +38,6 @@ export function Hero({ images }: { images: GalleryImage[] }) {
       aria-labelledby="hero-heading"
       className="relative isolate overflow-hidden pt-28 sm:pt-32"
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-[600px] bg-[radial-gradient(ellipse_70%_50%_at_50%_-5%,rgba(16,185,129,0.12),transparent_70%)] dark:bg-[radial-gradient(ellipse_70%_50%_at_50%_-5%,rgba(52,211,153,0.14),transparent_70%)]"
-      />
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
         <div className="lg:grid lg:grid-cols-[1fr_380px] lg:gap-10 lg:items-start">
 
@@ -61,7 +58,7 @@ export function Hero({ images }: { images: GalleryImage[] }) {
                 </span>
               </span>
               <span className="mt-2 block font-semibold text-zinc-800 sm:mt-3 dark:text-zinc-100">
-                {siteProfile.title}
+                <Typewriter text={siteProfile.title} delay={600} speed={50} />
               </span>
             </h1>
 
