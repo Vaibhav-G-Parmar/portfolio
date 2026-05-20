@@ -10,6 +10,9 @@
   --terminal-accent: #059669;
   --terminal-dim: #71717a;
   --grid-line: rgba(5, 120, 87, 0.09);
+  --grid-line-fine: rgba(5, 120, 87, 0.045);
+  --grid-line-major: rgba(5, 120, 87, 0.16);
+  --grid-spotlight: rgba(5, 120, 87, 0.14);
 }
 
 .dark {
@@ -19,6 +22,9 @@
   --terminal-accent: #34d399;
   --terminal-dim: #a1a1aa;
   --grid-line: rgba(52, 211, 153, 0.085);
+  --grid-line-fine: rgba(52, 211, 153, 0.04);
+  --grid-line-major: rgba(52, 211, 153, 0.15);
+  --grid-spotlight: rgba(52, 211, 153, 0.12);
 }
 
 @theme inline {
@@ -139,5 +145,132 @@ body {
   .badge-pulse-glow {
     animation: none !important;
     opacity: 1 !important;
+  }
+}
+
+/* Terminal grid backdrop */
+.terminal-backdrop {
+  --grid-size: 44px;
+  --grid-major: 176px;
+  --grid-fine: 11px;
+}
+
+.terminal-backdrop__grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.55;
+}
+
+.dark .terminal-backdrop__grid {
+  opacity: 0.6;
+}
+
+.terminal-backdrop__grid--fine {
+  background-image:
+    linear-gradient(var(--grid-line-fine) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line-fine) 1px, transparent 1px);
+  background-size: var(--grid-fine) var(--grid-fine);
+  opacity: 0.35;
+}
+
+.dark .terminal-backdrop__grid--fine {
+  opacity: 0.4;
+}
+
+.terminal-backdrop__grid--base {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(var(--grid-line-major) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line-major) 1px, transparent 1px);
+  background-size:
+    var(--grid-size) var(--grid-size),
+    var(--grid-size) var(--grid-size),
+    var(--grid-major) var(--grid-major),
+    var(--grid-major) var(--grid-major);
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 35%, black 15%, transparent 72%);
+}
+
+.terminal-backdrop__grid--spotlight {
+  background-image:
+    linear-gradient(var(--grid-spotlight) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-spotlight) 1px, transparent 1px);
+  background-size: var(--grid-size) var(--grid-size);
+  opacity: 0.9;
+  transition: mask-image 0.15s ease-out;
+}
+
+.terminal-backdrop__scanlines {
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 3px,
+    rgba(0, 0, 0, 0.035) 3px,
+    rgba(0, 0, 0, 0.035) 4px
+  );
+}
+
+.dark .terminal-backdrop__scanlines {
+  opacity: 0.45;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 3px,
+    rgba(0, 0, 0, 0.12) 3px,
+    rgba(0, 0, 0, 0.12) 4px
+  );
+}
+
+.terminal-backdrop__corner {
+  position: absolute;
+  height: 2rem;
+  width: 2rem;
+  border-color: rgba(16, 185, 129, 0.22);
+}
+
+.dark .terminal-backdrop__corner {
+  border-color: rgba(52, 211, 153, 0.2);
+}
+
+.terminal-backdrop__corner--tl {
+  left: 1rem;
+  top: 4.5rem;
+  border-left-width: 2px;
+  border-top-width: 2px;
+}
+
+.terminal-backdrop__corner--tr {
+  right: 1rem;
+  top: 4.5rem;
+  border-right-width: 2px;
+  border-top-width: 2px;
+}
+
+.terminal-backdrop__corner--bl {
+  bottom: 1rem;
+  left: 1rem;
+  border-bottom-width: 2px;
+  border-left-width: 2px;
+}
+
+.terminal-backdrop__corner--br {
+  bottom: 1rem;
+  right: 1rem;
+  border-bottom-width: 2px;
+  border-right-width: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .terminal-backdrop__grid--spotlight {
+    display: none;
+  }
+}
+
+@media (pointer: coarse) {
+  .terminal-backdrop__grid--spotlight {
+    display: none;
   }
 }
