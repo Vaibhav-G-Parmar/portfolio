@@ -81,3 +81,154 @@ body {
   outline-offset: 3px;
 }
 
+/* ════════════════════════════════════════════
+   BOLD SLAB SYSTEM — full-bleed bands, big type
+   ════════════════════════════════════════════ */
+
+/* Full-bleed section bands that stack edge to edge */
+.slab {
+  position: relative;
+  width: 100%;
+}
+
+.slab + .slab {
+  border-top: 1px solid var(--hairline);
+}
+
+.slab--alt {
+  background: var(--slab-alt);
+}
+
+.slab__inner {
+  width: 100%;
+  max-width: none;
+  padding-inline: 1.25rem;
+  padding-block: 5rem;
+}
+
+@media (min-width: 640px) {
+  .slab__inner {
+    padding-inline: 2rem;
+    padding-block: 7rem;
+  }
+}
+
+/* Leave room for the fixed side rails on large screens */
+@media (min-width: 1024px) {
+  .slab__inner {
+    padding-inline: 5.5rem;
+    padding-block: 9rem;
+  }
+}
+
+/* Constrain long-form reading measure without caging the layout */
+.measure {
+  max-width: 46rem;
+}
+.measure-wide {
+  max-width: 64rem;
+}
+
+/* ── Giant display type (same JetBrains Mono face) ── */
+.display-mega {
+  font-family: var(--font-mono-jb), ui-monospace, monospace;
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  line-height: 0.88;
+  text-wrap: balance;
+}
+
+.display-xl {
+  font-family: var(--font-mono-jb), ui-monospace, monospace;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  text-wrap: balance;
+}
+
+/* Section index / kicker */
+.kicker {
+  font-family: var(--font-mono-jb), ui-monospace, monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.section-index {
+  font-family: var(--font-mono-jb), ui-monospace, monospace;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--terminal-accent);
+}
+
+/* Outline / hollow text accent */
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px color-mix(in oklab, var(--terminal-accent), transparent 35%);
+}
+
+/* ── Hairline rules ── */
+.rule {
+  height: 1px;
+  width: 100%;
+  background: var(--hairline);
+}
+
+/* ════════════════════════════════════════════
+   MARQUEE — infinite scrolling tech ticker
+   ════════════════════════════════════════════ */
+.marquee {
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.marquee__track {
+  display: flex;
+  flex: 0 0 auto;
+  width: max-content;
+  align-items: center;
+  animation: marquee-left 38s linear infinite;
+}
+
+.marquee--reverse .marquee__track {
+  animation-name: marquee-right;
+  animation-duration: 44s;
+}
+
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track {
+    animation: none;
+  }
+}
+
+/* ── Reveal: clip rise for headings ── */
+.reveal-mask {
+  overflow: hidden;
+  display: block;
+}
