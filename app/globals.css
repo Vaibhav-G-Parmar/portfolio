@@ -9,10 +9,10 @@
   --foreground: #18181b;
   --terminal-accent: #059669;
   --terminal-dim: #71717a;
-  --grid-line: rgba(5, 120, 87, 0.09);
-  --grid-line-fine: rgba(5, 120, 87, 0.045);
-  --grid-line-major: rgba(5, 120, 87, 0.16);
-  --grid-spotlight: rgba(5, 120, 87, 0.14);
+  /* Bold slab system */
+  --hairline: rgba(9, 9, 11, 0.12);
+  --slab-alt: #ececef;
+  --muted: #52525b;
 }
 
 .dark {
@@ -21,10 +21,10 @@
   --foreground: #e4e4e7;
   --terminal-accent: #34d399;
   --terminal-dim: #a1a1aa;
-  --grid-line: rgba(52, 211, 153, 0.085);
-  --grid-line-fine: rgba(52, 211, 153, 0.04);
-  --grid-line-major: rgba(52, 211, 153, 0.15);
-  --grid-spotlight: rgba(52, 211, 153, 0.12);
+  /* Bold slab system */
+  --hairline: rgba(255, 255, 255, 0.09);
+  --slab-alt: #0b0b0c;
+  --muted: #a1a1aa;
 }
 
 @theme inline {
@@ -35,8 +35,25 @@
 }
 
 html {
-  scroll-behavior: smooth;
   overflow-x: hidden;
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {
