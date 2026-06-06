@@ -3,121 +3,96 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/animated-section";
-import { hoverCard, hoverChip, hoverLift } from "@/components/ui/motion-presets";
+import { SlabHeading } from "@/components/ui/slab-heading";
 import { StaggerContainer, StaggerItem } from "@/components/ui/stagger";
-import { projectsEyebrow, projectsHeading } from "@/content/site";
+import { projectsHeading } from "@/content/site";
 import { projects, type Project } from "@/data/projects";
 
-const primaryCtaClass =
-  "inline-flex min-h-[2.375rem] shrink-0 items-center gap-2 border border-emerald-600 bg-emerald-700 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-white transition hover:bg-emerald-600 dark:border-emerald-500 dark:bg-emerald-600 dark:hover:bg-emerald-500";
+const EASE = [0.16, 1, 0.3, 1] as const;
 
-const secondaryCtaClass =
-  "inline-flex min-h-[2.375rem] shrink-0 items-center gap-2 border border-emerald-600/35 bg-background/80 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-foreground/90 transition hover:border-emerald-600 hover:bg-emerald-600/10 dark:border-emerald-400/35 dark:hover:bg-emerald-400/10";
+const linkClass =
+  "inline-flex items-center gap-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-zinc-600 transition-colors hover:text-emerald-600 dark:text-zinc-400 dark:hover:text-emerald-400";
 
-function ProjectCard({ project }: { project: Project }) {
+function ProjectRow({ project, index }: { project: Project; index: number }) {
   const { live, googlePlay, appStore, repo } = project.links;
-  const hasLinks = Boolean(live || googlePlay || appStore || repo);
 
   return (
-    <motion.article
-      className="group relative flex h-full flex-col overflow-hidden border border-emerald-600/25 bg-background/65 p-6 dark:border-emerald-400/22 dark:bg-zinc-950/70"
-      {...hoverCard}
-    >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+    <StaggerItem>
+      <motion.article
+        className="group relative grid gap-6 py-10 lg:grid-cols-[auto_1fr_auto] lg:items-start lg:gap-12"
+        whileHover="hover"
       >
-        <div className="absolute inset-0 bg-emerald-600/[0.04] dark:bg-emerald-400/[0.06]" />
-      </div>
-      <div className="relative flex min-h-0 flex-1 flex-col">
-        <div className="flex items-start justify-between gap-4">
-          <h3 className="min-w-0 flex-1 font-display text-lg font-semibold leading-snug tracking-normal text-foreground">
+        {/* Index */}
+        <div className="flex items-center gap-4 lg:flex-col lg:items-start lg:gap-0">
+          <span className="section-index text-sm">{String(index + 1).padStart(2, "0")}</span>
+        </div>
+
+        {/* Title + body */}
+        <div className="min-w-0">
+          <h3 className="display-xl text-[clamp(1.8rem,4.5vw,3.25rem)] text-foreground transition-colors group-hover:text-emerald-600 dark:group-hover:text-emerald-400">
             {project.title}
           </h3>
-          <motion.span
-            aria-hidden
-            className="inline-flex size-10 shrink-0 items-center justify-center border border-emerald-600/30 bg-background/80 text-emerald-700 dark:border-emerald-400/30 dark:text-emerald-400"
-            whileHover={{ rotate: 12, scale: 1.1, transition: { duration: 0.2 } }}
-          >
-            <ArrowUpRight className="size-5" />
-          </motion.span>
+          <p className="mt-4 max-w-2xl text-[15px] leading-[1.7] text-zinc-600 dark:text-zinc-400">
+            {project.description}
+          </p>
+          <div className="mt-5 flex flex-wrap gap-x-4 gap-y-2">
+            {project.tags.map((t) => (
+              <span key={t} className="font-mono text-[12px] text-zinc-500 dark:text-zinc-500">
+                {t}
+              </span>
+            ))}
+          </div>
         </div>
-        <p className="mt-3 text-[14px] leading-[1.65] text-zinc-700 dark:text-zinc-300">{project.description}</p>
-        <div className="font-mono mt-5 flex flex-wrap content-start gap-2">
-          {project.tags.map((t) => (
-            <motion.span
-              key={t}
-              className="h-fit border border-emerald-600/25 bg-background/70 px-2 py-1 text-[11px] tracking-[0.02em] text-zinc-700 dark:border-emerald-400/22 dark:bg-zinc-900/80 dark:text-zinc-300"
-              {...hoverChip}
-            >
-              {t}
-            </motion.span>
-          ))}
+
+        {/* Links */}
+        <div className="flex flex-wrap items-center gap-5 lg:flex-col lg:items-end lg:gap-3">
+          {live ? (
+            <a href={live} target="_blank" rel="noopener noreferrer" className={linkClass} aria-label={`Visit ${project.title} (opens in new tab)`}>
+              Visit <ArrowUpRight className="size-3.5" />
+            </a>
+          ) : null}
+          {googlePlay ? (
+            <a href={googlePlay} target="_blank" rel="noopener noreferrer" className={linkClass}>
+              Google Play <ArrowUpRight className="size-3.5" />
+            </a>
+          ) : null}
+          {appStore ? (
+            <a href={appStore} target="_blank" rel="noopener noreferrer" className={linkClass}>
+              App Store <ArrowUpRight className="size-3.5" />
+            </a>
+          ) : null}
+          {repo ? (
+            <a href={repo} target="_blank" rel="noopener noreferrer" className={linkClass}>
+              Source <ArrowUpRight className="size-3.5" />
+            </a>
+          ) : null}
         </div>
-        <div className="mt-auto pt-6">
-          {hasLinks ? (
-            <div className="font-mono flex flex-wrap items-center gap-3">
-              {live ? (
-                <motion.a href={live} target="_blank" rel="noopener noreferrer" className={primaryCtaClass} aria-label={`Visit ${project.title} (opens in new tab)`} {...hoverLift}>
-                  Visit site <ArrowUpRight className="size-3.5 shrink-0" />
-                </motion.a>
-              ) : null}
-              {googlePlay ? (
-                <motion.a href={googlePlay} target="_blank" rel="noopener noreferrer" className={primaryCtaClass} {...hoverLift}>
-                  Google Play <ArrowUpRight className="size-3.5 shrink-0" />
-                </motion.a>
-              ) : null}
-              {appStore ? (
-                <motion.a href={appStore} target="_blank" rel="noopener noreferrer" className={secondaryCtaClass} {...hoverLift}>
-                  App Store <ArrowUpRight className="size-3.5 shrink-0" />
-                </motion.a>
-              ) : null}
-              {repo ? (
-                <motion.a href={repo} target="_blank" rel="noopener noreferrer" className={secondaryCtaClass} {...hoverLift}>
-                  Source <ArrowUpRight className="size-3.5 shrink-0" />
-                </motion.a>
-              ) : null}
-            </div>
-          ) : (
-            <div className="min-h-[2.375rem]" aria-hidden />
-          )}
-        </div>
-      </div>
-    </motion.article>
+
+        {/* Hover accent line */}
+        <motion.span
+          aria-hidden
+          className="absolute -bottom-px left-0 h-px bg-emerald-500 dark:bg-emerald-400"
+          initial={{ width: "0%" }}
+          variants={{ hover: { width: "100%" } }}
+          transition={{ duration: 0.5, ease: EASE }}
+        />
+      </motion.article>
+    </StaggerItem>
   );
 }
 
 export function Projects() {
   return (
-    <AnimatedSection
-      id="projects"
-      className="relative mx-auto max-w-6xl scroll-mt-24 px-4 py-10 sm:px-6 sm:py-14"
-    >
-      <div className="flex items-end justify-between gap-6">
-        <div>
-          <p className="font-mono text-[13px] font-bold uppercase leading-snug tracking-[0.18em] text-emerald-600 dark:text-emerald-400">
-            {projectsEyebrow}
-          </p>
-          <h2
-            id="projects-heading"
-            className="font-display mt-3 text-2xl font-semibold leading-snug text-foreground sm:text-3xl"
-          >
-            {projectsHeading}
-          </h2>
-        </div>
-        <div
-          aria-hidden
-          className="hidden h-px w-40 origin-left bg-emerald-600/35 md:block dark:bg-emerald-400/35"
-        />
-      </div>
+    <AnimatedSection id="projects" className="slab slab--alt scroll-mt-20 !border-t-0">
+      <div className="slab__inner !pt-16 sm:!pt-20 lg:!pt-24">
+        <SlabHeading index="03" label="Projects" title={projectsHeading} titleId="projects-heading" />
 
-      <StaggerContainer className="mt-12 grid gap-5 md:grid-cols-2 md:gap-6" staggerDelay={0.1}>
-        {projects.map((project) => (
-          <StaggerItem key={project.title}>
-            <ProjectCard project={project} />
-          </StaggerItem>
-        ))}
-      </StaggerContainer>
+        <StaggerContainer className="mt-10 divide-y divide-[var(--hairline)]" staggerDelay={0.08}>
+          {projects.map((project, i) => (
+            <ProjectRow key={project.title} project={project} index={i} />
+          ))}
+        </StaggerContainer>
+      </div>
     </AnimatedSection>
   );
 }
