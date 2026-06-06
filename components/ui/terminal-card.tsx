@@ -2,14 +2,13 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import type { TerminalLine } from "@/content/site";
 
-type Line = { text: string; tone?: "cmd" | "ok" | "dim" | "json" | "warn" | "ai" };
+type TerminalLine = { text: string; tone?: "cmd" | "ok" | "dim" | "json" | "warn" | "ai" };
 
 type Session = {
   tab: string;
   label: string;
-  lines: Line[];
+  lines: TerminalLine[];
 };
 
 const SESSIONS: Session[] = [
