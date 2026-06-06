@@ -1,15 +1,13 @@
 /** SEO / Open Graph blurb (~155-180 chars ideal) */
 export const seoDescription =
-  "Vaibhav Parmar - AI Software Engineer in Toronto. Mainframe, full-stack distributed systems, and AI agentic workflows. 4+ years shipping enterprise web, mobile, and integration workloads.";
+  "Vaibhav Parmar - Full-Stack Software Engineer in Toronto. MERN, cloud, mobile, mainframe, and z/OS Connect. 4+ years shipping web, mobile, and enterprise integration workloads.";
 
 export const siteProfile = {
   name: "Vaibhav Parmar",
-  title: "AI Software Engineer",
-  /** Hero lead */
+  title: "Full-Stack Software Engineer",
   tagline:
-    "Mainframe to modern. APIs, distributed systems, and AI agentic workflows.",
+    "Full-stack MERN, cloud-native, mobile, mainframe, and everything in between.",
   email: "vaibhav.parmar3@outlook.com",
-  /** E.164-style for tel: links */
   phone: "+16476763539",
   phoneDisplay: "(647) 676-3539",
   github: "https://github.com/Vaibhav-G-Parmar",
@@ -18,76 +16,127 @@ export const siteProfile = {
 } as const;
 
 export const heroCopy = {
-  badge: "Mainframe · Distributed Systems · AI Agentic Workflows",
-  /** Hero second paragraph */
+  badge: "Full-Stack MERN · Cloud · Mobile · Mainframe · z/OS Connect",
   supporting:
-    "Systems that hold up under real traffic. Mainframe backends connected to modern consumers through APIs, event-driven flows, and automation that keeps releases moving.",
+    "I build full-stack web apps with the MERN stack, deploy them on AWS and Azure, ship native mobile experiences on Android and iOS, and connect it all to mainframe backends through z/OS Connect and REST APIs.",
   primaryCta: "Projects",
   secondaryCta: "Get in touch",
   resumeCta: "Download resume",
 } as const;
 
-/** Hero stat cards (labels stay short for layout) */
-export const heroHighlights = [
-  { k: "Mainframe", v: "z/OS - DB2 - legacy to modern" },
-  { k: "Full-Stack Distributed", v: "APIs - Kafka - cloud - web & mobile" },
-  { k: "AI Agentic Workflows", v: "Copilot - Cursor IDE - prompt eng." },
+/** Animated stat counters under the hero */
+export const heroStats = [
+  { value: 4, suffix: "+", decimals: 0, label: "Years shipping in production" },
+  { value: 4.0, suffix: "", decimals: 1, label: "CGPA - High Honors" },
+  { value: 85, suffix: "%", decimals: 0, label: "Test coverage on services" },
+  { value: 40, suffix: "%", decimals: 0, label: "Faster queries after tuning" },
 ] as const;
 
-export const aboutHeading =
-  "Mainframe depth, distributed delivery, fewer surprises in production.";
+export type TerminalLine = {
+  text: string;
+  tone?: "cmd" | "ok" | "dim" | "json";
+};
 
-export const skillsHeading =
-  "Mainframe, cloud, APIs, and the tools I use to ship.";
+export type ExpertiseDomain = {
+  id: string;
+  index: string;
+  title: string;
+  description: string;
+  tags: readonly string[];
+  terminal: {
+    label: string;
+    lines: readonly TerminalLine[];
+  };
+};
 
-export const aboutCopy = {
-  bio: [
-    "AI Software Engineer in Toronto. 4+ years. I connect z/OS and DB2 backends to modern consumers through REST APIs, messaging, and integrations that hold up at scale.",
-    "AI agentic workflows - GitHub Copilot (chat, agents, skills, custom instructions) and Cursor to accelerate code reviews, generation, and delivery.",
-    "Java, TypeScript, React, Node, Spring Boot, Python, Kafka, AWS, Azure, Docker, Kubernetes, CI/CD. Mainframe data paths (DB2, batch, service interfaces). Mobile (iOS, Android). Observability (Splunk, Dynatrace, Datadog). Testing (Jest, Mocha, Supertest). Seneca CPA Co-op - Advanced Diploma, High Honors (4.0 CGPA). Hackathon finalist. Kafka and full-stack certifications.",
-  ],
-} as const;
+export const expertiseHeading =
+  "What I bring to the table.";
 
-export const skillGroups = [
+export const expertise: readonly ExpertiseDomain[] = [
   {
-    label: "Languages",
-    items: ["Java", "TypeScript", "JavaScript", "Python", "SQL", "PL/SQL", "C++", "SwiftUI", "Bash", "YAML", "HTML", "CSS"],
+    id: "fullstack",
+    index: "01",
+    title: "Full-Stack Web",
+    description:
+      "End-to-end MERN applications from database to UI. MongoDB for data, Express and Node for APIs, React and Next.js for interfaces. JWT auth, server-side rendering, real-time updates, and test suites that run before every deploy.",
+    tags: ["MongoDB", "Express", "React", "Node.js", "Next.js", "TypeScript", "Tailwind", "Jest", "REST APIs"],
+    terminal: {
+      label: "chronicle-app",
+      lines: [
+        { text: "$ mongosh --eval 'db.users.find().limit(2)'", tone: "cmd" },
+        { text: '{ _id: ObjectId("..."), name: "Vaibhav" }', tone: "json" },
+        { text: "$ npm test -- --coverage", tone: "cmd" },
+        { text: "✓ 142 passed · 87% coverage · 0 failures", tone: "ok" },
+      ],
+    },
   },
   {
-    label: "Frameworks",
-    items: ["Spring", "Spring Boot", "Hibernate", "WebFlux", "React", "Next.js", "Node.js", "Angular", "Redux", "Express"],
+    id: "cloud",
+    index: "02",
+    title: "Cloud & DevOps",
+    description:
+      "Production workloads on AWS and Azure. Dockerized services orchestrated with Kubernetes, event-driven pipelines through Kafka, and infrastructure defined in code. CI/CD through GitHub Actions and AWS CodePipeline with CloudWatch and Datadog for observability.",
+    tags: ["AWS", "Azure", "Docker", "Kubernetes", "Kafka", "CI/CD", "GitHub Actions", "Terraform", "CloudFormation"],
+    terminal: {
+      label: "eks-prod",
+      lines: [
+        { text: "$ kubectl get pods -n production", tone: "cmd" },
+        { text: "api-7f8b4   1/1   Running   eks-prod", tone: "dim" },
+        { text: "$ kafka-topics --describe --topic txn-events", tone: "cmd" },
+        { text: "Partitions: 12 · Replication: 3 · ISR: 3", tone: "dim" },
+      ],
+    },
   },
   {
-    label: "Cloud & DevOps",
-    items: ["AWS", "Azure", "GCP", "Docker", "Kubernetes", "CI/CD", "GitHub Actions", "Azure DevOps", "Maven", "Git", "PowerShell"],
+    id: "mobile",
+    index: "03",
+    title: "Mobile Apps",
+    description:
+      "Native Android and iOS applications shipped to both stores. SwiftUI for Apple platforms including WatchOS companions, Kotlin and Material 3 for Android. Push notifications, offline-first sync, and CI/CD through Fastlane for automated store submissions.",
+    tags: ["Android", "iOS", "SwiftUI", "WatchOS", "Kotlin", "React Native", "Fastlane"],
+    terminal: {
+      label: "harmony-app",
+      lines: [
+        { text: "$ xcodebuild -scheme App -sdk iphoneos", tone: "cmd" },
+        { text: "✓ SwiftUI · WatchOS companion · signed", tone: "ok" },
+        { text: "$ ./gradlew assembleRelease", tone: "cmd" },
+        { text: "✓ Android APK · Material 3 · ready", tone: "ok" },
+      ],
+    },
   },
   {
-    label: "Mainframe",
-    items: ["COBOL", "JCL", "SAS", "TSO", "ISPF", "CA-7", "AWF", "Endevor", "z/OS Connect", "IDz", "DB2", "IMS DB"],
+    id: "mainframe",
+    index: "04",
+    title: "Mainframe",
+    description:
+      "Standalone COBOL programs, JCL job streams, and batch scheduling through CA-7. Day-to-day work in TSO/ISPF, source control via Endevor, and debugging with IDz. DB2 for relational data, IMS DB for hierarchical. Enterprise batch that processes millions of records overnight.",
+    tags: ["COBOL", "JCL", "CA-7", "TSO", "ISPF", "Endevor", "IDz", "DB2", "IMS DB"],
+    terminal: {
+      label: "zos-batch",
+      lines: [
+        { text: "$ submit //ACCTJOB JOB (ACCT),'BATCH'", tone: "cmd" },
+        { text: "IEF403I ACCTJOB - STARTED", tone: "dim" },
+        { text: "ACCT001  STEP01  COBRUN  RC=0000", tone: "ok" },
+        { text: "$ ca7 DEMAND,JOB=NIGHTBAT,SCHID=042", tone: "cmd" },
+      ],
+    },
   },
   {
-    label: "Data & messaging",
-    items: ["MongoDB", "Redis", "DynamoDB", "Kafka", "Kafka Streams", "Kafka Connect", "KSQL", "Confluent Cloud"],
-  },
-  {
-    label: "APIs & integration",
-    items: ["REST", "JSON", "XML", "JWT", "OAuth", "SAML", "SASL", "Zowe CLI"],
-  },
-  {
-    label: "Mobile",
-    items: ["Android", "iOS", "SwiftUI", "WatchOS"],
-  },
-  {
-    label: "AI agentic workflows",
-    items: ["GitHub Copilot", "Copilot Agents", "Cursor IDE", "Prompt Engineering"],
-  },
-  {
-    label: "Testing",
-    items: ["Jest", "Mocha", "Supertest", "Unit", "Integration", "Regression", "Performance"],
-  },
-  {
-    label: "Observability & tools",
-    items: ["Splunk", "Dynatrace", "Datadog", "Jira", "ServiceNow", "Confluence", "Figma", "Postman"],
+    id: "zos-connect",
+    index: "05",
+    title: "API + z/OS Connect",
+    description:
+      "The bridge between mainframe and modern. z/OS Connect maps CICS COMMAREA and DB2 result sets to clean REST/JSON endpoints that any React app, mobile client, or microservice can consume. OAuth, JWT, and Zowe CLI for automation. Legacy data, modern interface.",
+    tags: ["z/OS Connect", "REST", "JSON", "JWT", "OAuth", "Zowe CLI", "CICS", "SAML"],
+    terminal: {
+      label: "zos-api",
+      lines: [
+        { text: "$ zcon build service AccountSvc.sar", tone: "cmd" },
+        { text: "✓ SAR built · COMMAREA mapped to JSON", tone: "ok" },
+        { text: "$ curl https://zos-api/v1/accounts/4821", tone: "cmd" },
+        { text: '{ "id": 4821, "balance": 19420.50 }', tone: "json" },
+      ],
+    },
   },
 ] as const;
 
@@ -98,6 +147,5 @@ export const contactHeading = "Tell me what \"better\" looks like for your team.
 export const contactLead =
   "If that sounds like your situation, say hi. Email, LinkedIn, or phone all work.";
 
-/** Footer one-liner under social links */
 export const brandPromise =
-  "Mainframe to modern - distributed delivery - software that fits how your teams already work.";
+  "Full-stack MERN - cloud-native - mobile - mainframe to modern via z/OS Connect - software that fits how your teams already work.";
