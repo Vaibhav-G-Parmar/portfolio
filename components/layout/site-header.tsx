@@ -58,26 +58,23 @@ export function SiteHeader() {
 
   return (
     <header
-      className={`font-mono fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${scrolled ? "border-emerald-600/25 bg-background/90 backdrop-blur-md dark:border-emerald-400/20" : "border-transparent bg-transparent"}`}
+      className={`font-mono fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${scrolled ? "border-b border-[var(--hairline)] bg-background/80 backdrop-blur-xl" : "border-b border-transparent bg-transparent"}`}
     >
-      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-6 px-4 sm:h-16 sm:px-6">
+      <div className="flex h-16 items-center justify-between gap-6 px-5 sm:h-20 sm:px-8 lg:px-12">
         <Link
           href="#top"
-          className="group inline-flex items-center gap-2.5 text-[13px] font-medium uppercase tracking-[0.14em] text-foreground"
+          className="group inline-flex items-center gap-2.5 text-sm font-bold uppercase tracking-[0.12em] text-foreground"
         >
-          <motion.span
-            className="flex size-9 items-center justify-center border border-emerald-600/35 bg-background/80 text-emerald-700 dark:border-emerald-400/35 dark:text-emerald-400"
-            {...hoverIcon}
-          >
-            <Terminal className="size-[17px]" aria-hidden />
+          <motion.span className="text-emerald-600 dark:text-emerald-400" {...hoverIcon}>
+            <Terminal className="size-[18px]" aria-hidden />
           </motion.span>
           <span className="leading-tight">
-            <span className="hidden text-emerald-700 dark:text-emerald-400 sm:inline">{siteProfile.name}</span>
+            <span className="hidden sm:inline">{siteProfile.name}</span>
             <span className="sm:hidden">{siteProfile.name.split(" ")[0]}</span>
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-0.5 md:flex">
+        <nav className="hidden items-center gap-1 md:flex">
           {NAV.map((item) => {
             const sectionId = item.href.replace("#", "");
             const isActive = activeSection === sectionId;
@@ -85,17 +82,20 @@ export function SiteHeader() {
               <motion.a
                 key={item.href}
                 href={item.href}
-                className={`relative border px-3 py-2 text-[11px] uppercase tracking-[0.18em] transition-colors ${
+                className={`relative px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] transition-colors ${
                   isActive
-                    ? "border-emerald-600/30 text-emerald-700 dark:border-emerald-400/25 dark:text-emerald-400"
-                    : "border-transparent text-foreground/65 hover:border-emerald-600/30 hover:text-emerald-700 dark:hover:border-emerald-400/25 dark:hover:text-emerald-400"
+                    ? "text-emerald-600 dark:text-emerald-400"
+                    : "text-foreground/60 hover:text-foreground"
                 }`}
-                whileHover={isActive ? undefined : { y: -1, scale: 1.02, transition: { duration: 0.15 } }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={isActive ? undefined : { y: -1, transition: { duration: 0.15 } }}
+                whileTap={{ scale: 0.96 }}
               >
-                ▸ {item.label}
+                {item.label}
                 {isActive && (
-                  <span className="absolute bottom-0 left-3 right-3 h-px bg-emerald-600 dark:bg-emerald-400" />
+                  <motion.span
+                    layoutId="nav-active"
+                    className="absolute -bottom-0.5 left-3 right-3 h-0.5 bg-emerald-500 dark:bg-emerald-400"
+                  />
                 )}
               </motion.a>
             );
@@ -103,13 +103,14 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <div className="hidden items-center gap-2 md:flex">
+          {/* Socials only on md (tablets) - on lg+ side rails handle it */}
+          <div className="hidden items-center gap-2 md:flex lg:hidden">
             <motion.a
               href={siteProfile.github}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="inline-flex size-10 items-center justify-center border border-emerald-600/25 bg-background/80 text-foreground/80 transition hover:border-emerald-600/45 hover:text-foreground dark:border-emerald-400/25 dark:bg-zinc-950/80"
+              className="inline-flex size-10 items-center justify-center text-foreground/60 transition-colors hover:text-emerald-600 dark:hover:text-emerald-400"
               {...hoverIcon}
             >
               <GitHubIcon className="size-[18px]" />
@@ -119,7 +120,7 @@ export function SiteHeader() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="inline-flex size-10 items-center justify-center border border-emerald-600/25 bg-background/80 text-foreground/80 transition hover:border-emerald-600/45 hover:text-foreground dark:border-emerald-400/25 dark:bg-zinc-950/80"
+              className="inline-flex size-10 items-center justify-center text-foreground/60 transition-colors hover:text-emerald-600 dark:hover:text-emerald-400"
               {...hoverIcon}
             >
               <LinkedInIcon className="size-[18px]" />
@@ -127,7 +128,7 @@ export function SiteHeader() {
             <motion.a
               href={`mailto:${siteProfile.email}`}
               aria-label="Email"
-              className="inline-flex size-10 items-center justify-center border border-emerald-600/25 bg-background/80 text-foreground/80 transition hover:border-emerald-600/45 hover:text-foreground dark:border-emerald-400/25 dark:bg-zinc-950/80"
+              className="inline-flex size-10 items-center justify-center text-foreground/60 transition-colors hover:text-emerald-600 dark:hover:text-emerald-400"
               {...hoverIcon}
             >
               <Mail className="size-[18px]" aria-hidden />
@@ -142,7 +143,7 @@ export function SiteHeader() {
                 ? `Switch to ${resolvedTheme === "dark" ? "light" : "dark"} theme`
                 : "Toggle color theme"
             }
-            className="inline-flex size-10 items-center justify-center border border-emerald-600/25 bg-background/80 text-foreground/85 transition hover:border-emerald-600/45 hover:text-foreground disabled:pointer-events-none dark:border-emerald-400/25 dark:bg-zinc-950/80"
+            className="inline-flex size-10 items-center justify-center text-foreground/70 transition-colors hover:text-emerald-600 disabled:pointer-events-none dark:hover:text-emerald-400"
             disabled={!mounted}
             {...hoverIcon}
           >
@@ -157,22 +158,22 @@ export function SiteHeader() {
 
           <motion.button
             type="button"
-            className="inline-flex size-10 items-center justify-center border border-emerald-600/25 bg-background/80 md:hidden dark:border-emerald-400/25"
+            className="inline-flex size-10 items-center justify-center text-foreground transition-colors hover:text-emerald-600 md:hidden dark:hover:text-emerald-400"
             aria-label="Open menu"
             onClick={() => setOpen((v) => !v)}
             {...hoverIcon}
           >
-            <Menu className="size-5" />
+            <Menu className="size-6" />
           </motion.button>
         </div>
       </div>
 
       <div
-        className={`overflow-hidden border-b border-emerald-600/20 bg-background/95 font-mono backdrop-blur-md transition-[max-height,opacity] duration-200 ease-out dark:border-emerald-400/20 md:hidden ${
+        className={`overflow-hidden border-b border-[var(--hairline)] bg-background/95 font-mono backdrop-blur-xl transition-[max-height,opacity] duration-200 ease-out md:hidden ${
           open ? "max-h-96 opacity-100" : "max-h-0 border-transparent opacity-0"
         }`}
       >
-        <div className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3">
+        <div className="flex flex-col gap-1 px-5 py-4">
           {NAV.map((item) => {
             const sectionId = item.href.replace("#", "");
             const isActive = activeSection === sectionId;
@@ -181,47 +182,45 @@ export function SiteHeader() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className={`px-3 py-3 text-[13px] uppercase tracking-[0.14em] transition-colors hover:bg-emerald-600/10 hover:text-emerald-700 dark:hover:bg-emerald-400/10 dark:hover:text-emerald-400 ${
-                  isActive
-                    ? "border-l-2 border-emerald-500 text-emerald-700 dark:text-emerald-400"
-                    : "text-foreground/80"
+                className={`py-3 text-lg font-bold uppercase tracking-[0.08em] transition-colors hover:text-emerald-600 dark:hover:text-emerald-400 ${
+                  isActive ? "text-emerald-600 dark:text-emerald-400" : "text-foreground"
                 }`}
-                whileHover={{ x: 4, transition: { duration: 0.15 } }}
+                whileHover={{ x: 6, transition: { duration: 0.15 } }}
                 whileTap={{ scale: 0.98 }}
               >
-                ▸ {item.label}
+                {item.label}
               </motion.a>
             );
           })}
 
-          <div className="mt-2 flex items-center gap-2 px-3 pb-1">
+          <div className="mt-4 flex items-center gap-4 border-t border-[var(--hairline)] pt-4">
             <motion.a
               href={siteProfile.github}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="inline-flex size-10 items-center justify-center border border-emerald-600/25 bg-background/80 text-foreground/80 transition hover:border-emerald-600/45 hover:text-foreground dark:border-emerald-400/25 dark:bg-zinc-950/80"
+              className="inline-flex size-10 items-center justify-center text-foreground/60 transition-colors hover:text-emerald-600 dark:hover:text-emerald-400"
               {...hoverIcon}
             >
-              <GitHubIcon className="size-[18px]" />
+              <GitHubIcon className="size-[20px]" />
             </motion.a>
             <motion.a
               href={siteProfile.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="inline-flex size-10 items-center justify-center border border-emerald-600/25 bg-background/80 text-foreground/80 transition hover:border-emerald-600/45 hover:text-foreground dark:border-emerald-400/25 dark:bg-zinc-950/80"
+              className="inline-flex size-10 items-center justify-center text-foreground/60 transition-colors hover:text-emerald-600 dark:hover:text-emerald-400"
               {...hoverIcon}
             >
-              <LinkedInIcon className="size-[18px]" />
+              <LinkedInIcon className="size-[20px]" />
             </motion.a>
             <motion.a
               href={`mailto:${siteProfile.email}`}
               aria-label="Email"
-              className="inline-flex size-10 items-center justify-center border border-emerald-600/25 bg-background/80 text-foreground/80 transition hover:border-emerald-600/45 hover:text-foreground dark:border-emerald-400/25 dark:bg-zinc-950/80"
+              className="inline-flex size-10 items-center justify-center text-foreground/60 transition-colors hover:text-emerald-600 dark:hover:text-emerald-400"
               {...hoverIcon}
             >
-              <Mail className="size-[18px]" aria-hidden />
+              <Mail className="size-[20px]" aria-hidden />
             </motion.a>
           </div>
         </div>
