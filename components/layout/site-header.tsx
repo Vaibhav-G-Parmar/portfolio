@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Menu, Moon, Sun, Terminal } from "lucide-react";
 import { useTheme } from "next-themes";
@@ -8,6 +8,15 @@ import Link from "next/link";
 import { siteProfile } from "@/content/site";
 import { hoverIcon } from "@/components/ui/motion-presets";
 import { useActiveSection } from "@/hooks/use-active-section";
+
+/** Returns false on the server/during hydration, true once on the client. */
+function useIsMounted() {
+  return useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
+}
 
 function GitHubIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -37,12 +46,8 @@ export function SiteHeader() {
   const { resolvedTheme, setTheme } = useTheme();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const mounted = useIsMounted();
   const activeSection = useActiveSection();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
