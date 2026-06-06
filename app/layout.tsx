@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { SmoothScroll } from "@/components/providers/smooth-scroll";
 import { seoDescription, siteProfile } from "@/content/site";
 import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
@@ -103,7 +104,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${plexSans.variable} ${jetbrainsMono.variable} h-full scroll-smooth`}
+      className={`${plexSans.variable} ${jetbrainsMono.variable} h-full`}
     >
       <body className="min-h-full bg-background font-sans text-foreground antialiased selection:bg-emerald-500/25 dark:selection:bg-emerald-400/25">
         <Script
@@ -112,7 +113,9 @@ export default function RootLayout({
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <SmoothScroll>{children}</SmoothScroll>
+        </ThemeProvider>
       </body>
     </html>
   );
