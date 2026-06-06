@@ -35,8 +35,7 @@ function LinkedInIcon(props: React.SVGProps<SVGSVGElement>) {
 }
 
 const NAV = [
-  { href: "#about", label: "About" },
-  { href: "#skills", label: "Skills" },
+  { href: "#expertise", label: "Expertise" },
   { href: "#projects", label: "Projects" },
   { href: "#gallery", label: "Gallery" },
   { href: "#contact", label: "Contact" },
@@ -138,21 +137,15 @@ export function SiteHeader() {
           <motion.button
             type="button"
             onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-            aria-label={
-              mounted
-                ? `Switch to ${resolvedTheme === "dark" ? "light" : "dark"} theme`
-                : "Toggle color theme"
-            }
+            aria-label={`Switch to ${resolvedTheme === "dark" ? "light" : "dark"} theme`}
             className="inline-flex size-10 items-center justify-center text-foreground/70 transition-colors hover:text-emerald-600 disabled:pointer-events-none dark:hover:text-emerald-400"
-            disabled={!mounted}
+            disabled={!mounted || !resolvedTheme}
             {...hoverIcon}
           >
-            {!mounted ? (
-              <Sun className="size-[18px] opacity-35" aria-hidden />
-            ) : resolvedTheme === "dark" ? (
+            {mounted && resolvedTheme === "dark" ? (
               <Moon className="size-[18px]" />
             ) : (
-              <Sun className="size-[18px]" />
+              <Sun className="size-[18px]" aria-hidden />
             )}
           </motion.button>
 
