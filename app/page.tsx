@@ -2,7 +2,6 @@ import { BackToTop } from "@/components/effects/back-to-top";
 import { ScrollProgress } from "@/components/effects/scroll-progress";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
-import { SideRails } from "@/components/layout/side-rails";
 import { Expertise } from "@/components/sections/expertise";
 import { Contact } from "@/components/sections/contact";
 import { Hero } from "@/components/sections/hero";
@@ -20,7 +19,6 @@ export default function Home() {
     <>
       <ScrollProgress />
       <BackToTop />
-      <SideRails />
       <div className="relative z-10 flex min-h-screen flex-col">
         <SiteHeader />
         <main className="flex-1">
