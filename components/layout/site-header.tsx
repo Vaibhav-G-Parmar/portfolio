@@ -57,7 +57,7 @@ export function SiteHeader() {
 
   return (
     <header
-      className={`font-mono fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${scrolled ? "border-b border-[var(--hairline)] bg-background/80 backdrop-blur-xl" : "border-b border-transparent bg-transparent"}`}
+      className={`font-mono fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled ? "bg-background/80 shadow-[0_1px_0_var(--hairline)] backdrop-blur-xl" : "bg-transparent"}`}
     >
       <div className="flex h-16 items-center justify-between gap-6 px-5 sm:h-20 sm:px-8 lg:px-12">
         <Link
@@ -102,8 +102,8 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
-          {/* Socials only on md (tablets) - on lg+ side rails handle it */}
-          <div className="hidden items-center gap-2 md:flex lg:hidden">
+          {/* Socials */}
+          <div className="hidden items-center gap-2 md:flex">
             <motion.a
               href={siteProfile.github}
               target="_blank"
@@ -137,7 +137,7 @@ export function SiteHeader() {
           <motion.button
             type="button"
             onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-            aria-label={`Switch to ${resolvedTheme === "dark" ? "light" : "dark"} theme`}
+            aria-label={mounted && resolvedTheme ? `Switch to ${resolvedTheme === "dark" ? "light" : "dark"} theme` : "Toggle theme"}
             className="inline-flex size-10 items-center justify-center text-foreground/70 transition-colors hover:text-emerald-600 disabled:pointer-events-none dark:hover:text-emerald-400"
             disabled={!mounted || !resolvedTheme}
             {...hoverIcon}
@@ -162,8 +162,8 @@ export function SiteHeader() {
       </div>
 
       <div
-        className={`overflow-hidden border-b border-[var(--hairline)] bg-background/95 font-mono backdrop-blur-xl transition-[max-height,opacity] duration-200 ease-out md:hidden ${
-          open ? "max-h-96 opacity-100" : "max-h-0 border-transparent opacity-0"
+        className={`overflow-hidden bg-background/95 backdrop-blur-xl transition-[max-height,opacity] duration-200 ease-out md:hidden ${
+          open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <div className="flex flex-col gap-1 px-5 py-4">
