@@ -44,3 +44,6 @@ next-env.d.ts
 profile-readme.md
 features.txt
 stories.md
+
+# local agent guidance - not pushed
+/.github/
