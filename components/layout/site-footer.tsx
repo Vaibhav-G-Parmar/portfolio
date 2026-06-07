@@ -37,10 +37,10 @@ export function SiteFooter() {
           </nav>
         </div>
 
-        <p className="mt-12 max-w-2xl font-mono text-[11px] leading-relaxed tracking-[0.06em] text-zinc-500 dark:text-zinc-500">
+        <p className="mt-12 max-w-2xl font-mono text-[11px] leading-relaxed tracking-[0.06em] text-zinc-500 dark:text-zinc-500 text-center mx-auto">
           {brandPromise}
         </p>
-        <p className="mt-4 font-mono text-[10px] tracking-[0.08em] text-zinc-500 dark:text-zinc-600">
+        <p className="mt-4 font-mono text-[10px] tracking-[0.08em] text-zinc-500 dark:text-zinc-600 text-center">
           © {new Date().getFullYear()} {siteProfile.name}. All rights reserved.
         </p>
       </div>
