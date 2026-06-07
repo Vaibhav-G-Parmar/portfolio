@@ -91,10 +91,6 @@ body {
   width: 100%;
 }
 
-.slab + .slab {
-  border-top: 1px solid var(--hairline);
-}
-
 .slab--alt {
   background: var(--slab-alt);
 }
@@ -113,11 +109,19 @@ body {
   }
 }
 
-/* Leave room for the fixed side rails on large screens */
+/* Leave room for content to breathe on large screens */
 @media (min-width: 1024px) {
   .slab__inner {
-    padding-inline: 5.5rem;
+    padding-inline: 4rem;
     padding-block: 9rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .slab__inner {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 2rem;
   }
 }
 
