@@ -3,12 +3,31 @@
 import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { SlabHeading } from "@/components/ui/slab-heading";
-import { MiniTerminal } from "@/components/ui/terminal-card";
+import { AnimatedMiniTerminal } from "@/components/ui/animated-mini-terminal";
 import { expertise, expertiseHeading, type ExpertiseDomain } from "@/content/site";
+import { hoverChip } from "@/components/ui/motion-presets";
+import {
+  FullStackGraphic,
+  CloudTopologyGraphic,
+  MobileDeviceGraphic,
+  MainframeGraphic,
+  ZosPipelineGraphic,
+  FloatingParticles,
+} from "@/components/ui/expertise-graphics";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
+const domainGraphicMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  fullstack: FullStackGraphic,
+  cloud: CloudTopologyGraphic,
+  mobile: MobileDeviceGraphic,
+  mainframe: MainframeGraphic,
+  "zos-connect": ZosPipelineGraphic,
+};
+
 function DomainBlock({ domain, flip }: { domain: ExpertiseDomain; flip: boolean }) {
+  const DomainGraphic = domainGraphicMap[domain.id];
+
   const textSide = (
     <div>
       {/* Index + kicker */}
@@ -46,22 +65,22 @@ function DomainBlock({ domain, flip }: { domain: ExpertiseDomain; flip: boolean 
         {domain.description}
       </motion.p>
 
-      <motion.div
-        className="mt-8 flex flex-wrap gap-2"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, margin: "-10% 0px" }}
-        transition={{ duration: 0.4, ease: EASE, delay: 0.25 }}
-      >
-        {domain.tags.map((tag) => (
-          <span
+      {/* Staggered tags with hover effect */}
+      <div className="mt-8 flex flex-wrap gap-2">
+        {domain.tags.map((tag, i) => (
+          <motion.span
             key={tag}
-            className="rounded-full border border-[var(--hairline)] px-3 py-1 font-mono text-[12px] text-zinc-500 transition-colors hover:border-emerald-500/50 hover:text-emerald-600 dark:text-zinc-400 dark:hover:text-emerald-400"
+            className="rounded-full border border-[var(--hairline)] px-3 py-1 font-mono text-[12px] text-zinc-500 transition-colors dark:text-zinc-400"
+            initial={{ opacity: 0, scale: 0.85, y: 8 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10% 0px" }}
+            transition={{ duration: 0.35, ease: EASE, delay: 0.3 + i * 0.04 }}
+            {...hoverChip}
           >
             {tag}
-          </span>
+          </motion.span>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 
@@ -71,9 +90,15 @@ function DomainBlock({ domain, flip }: { domain: ExpertiseDomain; flip: boolean 
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-10% 0px" }}
       transition={{ duration: 0.6, ease: EASE, delay: 0.2 }}
-      className="flex items-start"
+      className="relative flex flex-col items-start gap-5"
     >
-      <MiniTerminal
+      {/* Domain-specific graphic */}
+      {DomainGraphic && (
+        <DomainGraphic className="w-full" />
+      )}
+
+      {/* Animated terminal */}
+      <AnimatedMiniTerminal
         label={domain.terminal.label}
         lines={domain.terminal.lines}
         className="w-full"
@@ -82,7 +107,10 @@ function DomainBlock({ domain, flip }: { domain: ExpertiseDomain; flip: boolean 
   );
 
   return (
-    <div className={`grid items-center gap-10 lg:gap-16 ${flip ? "lg:grid-cols-[1fr_1.3fr]" : "lg:grid-cols-[1.3fr_1fr]"}`}>
+    <div className={`relative grid items-center gap-10 lg:gap-16 ${flip ? "lg:grid-cols-[1fr_1.3fr]" : "lg:grid-cols-[1.3fr_1fr]"}`}>
+      {/* Floating particles background */}
+      <FloatingParticles count={6} className="opacity-40" />
+
       {flip ? (
         <>
           {visualSide}
