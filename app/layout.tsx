@@ -51,17 +51,26 @@ export const metadata: Metadata = {
     canonical: siteUrl,
   },
   openGraph: {
-    title: `${siteProfile.name} - ${siteProfile.title}`,
+    title: `${siteProfile.name} | ${siteProfile.title}`,
     description: seoDescription,
     url: siteUrl,
     siteName: `${siteProfile.name} - vaibhavparmar.com`,
     locale: "en_CA",
     type: "website",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: `${siteProfile.name} - ${siteProfile.title}`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteProfile.name} - ${siteProfile.title}`,
+    title: `${siteProfile.name} | ${siteProfile.title}`,
     description: seoDescription,
+    images: ["/opengraph-image"],
   },
   robots: { index: true, follow: true },
   appleWebApp: false,
