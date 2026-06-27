@@ -1,22 +1,12 @@
 "use client";
 
-import { useSyncExternalStore, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Menu, Moon, Sun, Terminal } from "lucide-react";
-import { useTheme } from "next-themes";
+import { Mail, Menu, Terminal } from "lucide-react";
 import Link from "next/link";
 import { siteProfile } from "@/content/site";
 import { hoverIcon } from "@/components/ui/motion-presets";
 import { useActiveSection } from "@/hooks/use-active-section";
-
-/** Returns false on the server/during hydration, true once on the client. */
-function useIsMounted() {
-  return useSyncExternalStore(
-    () => () => {},
-    () => true,
-    () => false,
-  );
-}
 
 function GitHubIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -42,10 +32,8 @@ const NAV = [
 ];
 
 export function SiteHeader() {
-  const { resolvedTheme, setTheme } = useTheme();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const mounted = useIsMounted();
   const activeSection = useActiveSection();
 
   useEffect(() => {
@@ -133,21 +121,6 @@ export function SiteHeader() {
               <Mail className="size-[18px]" aria-hidden />
             </motion.a>
           </div>
-
-          <motion.button
-            type="button"
-            onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-            aria-label={mounted && resolvedTheme ? `Switch to ${resolvedTheme === "dark" ? "light" : "dark"} theme` : "Toggle theme"}
-            className="inline-flex size-10 items-center justify-center text-foreground/70 transition-colors hover:text-emerald-600 disabled:pointer-events-none dark:hover:text-emerald-400"
-            disabled={!mounted || !resolvedTheme}
-            {...hoverIcon}
-          >
-            {mounted && resolvedTheme === "dark" ? (
-              <Moon className="size-[18px]" />
-            ) : (
-              <Sun className="size-[18px]" aria-hidden />
-            )}
-          </motion.button>
 
           <motion.button
             type="button"

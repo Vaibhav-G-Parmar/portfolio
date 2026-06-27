@@ -45,17 +45,23 @@ export function Typewriter({ text, delay = 0, speed = 45, className }: Typewrite
   }
 
   return (
-    <span className={className}>
-      {displayed}
-      {!done && started && (
-        <motion.span
-          animate={{ opacity: [1, 0] }}
-          transition={{ duration: 0.6, repeat: Infinity, repeatType: "reverse" }}
-          className="inline-block w-[2px] translate-y-[2px] bg-emerald-500 align-baseline"
-          style={{ height: "1em" }}
-          aria-hidden
-        />
-      )}
+    <span className={`relative block ${className ?? ""}`} aria-label={text}>
+      {/* Ghost text reserves full width/height so layout below does not shift while typing */}
+      <span aria-hidden className="invisible block select-none">
+        {text}
+      </span>
+      <span className="absolute inset-0 block">
+        {displayed}
+        {!done && started && (
+          <motion.span
+            animate={{ opacity: [1, 0] }}
+            transition={{ duration: 0.6, repeat: Infinity, repeatType: "reverse" }}
+            className="inline-block w-[2px] translate-y-[2px] bg-emerald-500 align-baseline"
+            style={{ height: "1em" }}
+            aria-hidden
+          />
+        )}
+      </span>
     </span>
   );
 }

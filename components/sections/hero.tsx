@@ -72,8 +72,8 @@ export function Hero({
             <Typewriter text={siteProfile.title} delay={500} speed={55} />
           </p>
 
-          <p className="measure mt-6 text-[15px] leading-[1.8] text-zinc-600 dark:text-zinc-400 sm:text-base">
-            {heroCopy.supporting}
+          <p className="measure mt-6 whitespace-pre-line text-[15px] leading-[1.8] text-zinc-600 dark:text-zinc-400 sm:text-base">
+            {heroCopy.supporting.trim()}
           </p>
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">

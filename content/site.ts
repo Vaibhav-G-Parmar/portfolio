@@ -4,9 +4,7 @@ export const seoDescription =
 
 export const siteProfile = {
   name: "Vaibhav Parmar",
-  title: "Full-Stack Software Engineer",
-  tagline:
-    "Full-stack MERN, cloud-native, mobile, mainframe, and everything in between.",
+  title: "Full-Stack Software Engineer (AI)",
   email: "vaibhav.parmar3@outlook.com",
   phone: "+16476763539",
   phoneDisplay: "(647) 676-3539",
@@ -16,9 +14,9 @@ export const siteProfile = {
 } as const;
 
 export const heroCopy = {
-  badge: "Full-Stack MERN · Cloud · Mobile · Mainframe · z/OS Connect",
+  badge: "AI Agents· Spring Boot · MERN · Mobile · Cloud · Mainframe",
   supporting:
-    "I build full-stack web apps with the MERN stack, deploy them on AWS and Azure, ship native mobile experiences on Android and iOS, and connect it all to mainframe backends through z/OS Connect and REST APIs.",
+    "I build and ship full-stack systems across the entire stack - MERN, Spring Boot, AWS and Mainframe - end-to-end, every layer.\n\nCurrently at TD Bank, building enterprise Node.js and Spring Boot APIs that bridge modern distributed services to enterprise mainframe backend. I also build AI tooling on top - autonomous agents, prompt libraries - usually before it's on anyone's roadmap.",  
   primaryCta: "Projects",
   secondaryCta: "Get in touch",
   resumeCta: "Download resume",
